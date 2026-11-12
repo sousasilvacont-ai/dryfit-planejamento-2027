@@ -1,27 +1,25 @@
 # Planejamento Dryfit · Tributário 2027
 
-Apresentação interativa e estática de planejamento tributário da Dryfit. O ponto de entrada do site é `index.html`, compatível com publicação direta pelo GitHub Pages, sem build ou dependências de servidor.
+Apresentação interativa, estática e pronta para publicação no GitHub Pages. A página principal está em `index.html`; ela não precisa de build, servidor de aplicação ou dependências externas.
 
-## Estrutura publicada
+## Estrutura
 
-O repositório mantém os ativos estáticos na raiz (a alternativa mais segura para preservar os arquivos originais e a compatibilidade com Pages):
+- `index.html` — apresentação principal.
+- `PAINEL_TRIBUTARIO_CNPJ_67073133000169.html` — endereço legado que redireciona para `index.html`.
+- `assets/css/` — folhas de estilo.
+- `assets/js/` — interações, gráfico e Three.js.
+- `assets/fonts/` — Manrope e licença OFL.
+- `painel_tributario.test.cjs` — valida os cálculos da simulação.
+- `THREE-LICENSE.txt` está junto ao bundle de Three.js em `assets/js/`.
 
-- `index.html` — ponto de entrada e carregador estático da apresentação.
-- `PAINEL_TRIBUTARIO_CNPJ_67073133000169.html` — conteúdo principal dos slides.
-- `painel_tributario.css` e `client_final.css` — estilos.
-- `painel_tributario.js`, `meeting_chart_3d.js` e `client_final.js` — interações e gráfico.
-- `three.global.js` — biblioteca Three.js.
-- `Manrope-Variable.ttf` e `Manrope-OFL.txt` — fonte e licença.
-- `THREE-LICENSE.txt` — licença da biblioteca Three.js.
-- `painel_tributario.test.cjs` — testes da simulação (executar com `node painel_tributario.test.cjs`).
-- `MANIFESTO_PUBLICACAO_DRYFIT_2026-11-12.json` — manifesto de publicação.
+Os caminhos são relativos à raiz do projeto, para funcionar tanto na raiz de um domínio quanto em um endereço de projeto do GitHub Pages.
 
-O `index.html` corrige os caminhos legados para Three.js e declara a fonte com o caminho da raiz. A página continua usando HTML, CSS e JavaScript estáticos; não usa caminhos absolutos que quebrem em uma publicação de projeto no GitHub Pages.
+## Publicação no GitHub Pages
 
-## GitHub Pages
+Em **Settings → Pages → Build and deployment**, selecione **Deploy from a branch**, `main` e `/(root)`. Após a alteração ser integrada à `main` e publicada, a URL esperada é <https://sousasilvacont-ai.github.io/dryfit-planejamento-2027/>.
 
-Configure em **Settings → Pages → Build and deployment** a opção **Deploy from a branch**, branch `main`, pasta `/(root)`.
+A simulação é ilustrativa. Valide dados, enquadramento e legislação antes de usá-la como apuração fiscal.
 
-URL esperada: https://sousasilvacont-ai.github.io/dryfit-planejamento-2027/
+## Validação local
 
-A simulação é ilustrativa; valide dados, enquadramento e legislação antes de usá-la como apuração fiscal.
+Com Node.js instalado, execute `node painel_tributario.test.cjs` na raiz do projeto.

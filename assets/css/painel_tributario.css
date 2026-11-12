@@ -478,7 +478,7 @@
 @layer responsive {
   @media(max-width:600px) { .column-group { grid-template-rows:50px 290px 110px; } .column-label { height:50px; } .bar-space { height:290px; } .chart-legend>span { display:block; } .chart-legend strong { display:block; } }
 }
-@font-face { font-family:Manrope; src:url('vendor/fonts/Manrope-Variable.ttf') format('truetype'); font-weight:200 800; font-display:swap; }
+@font-face { font-family:Manrope; src:url('../fonts/Manrope-Variable.ttf') format('truetype'); font-weight:200 800; font-display:swap; }
 @layer base { :root { font-family:Manrope,"Segoe UI",sans-serif; } }
 @layer components {
   .page-title h1 { font-weight:800; }

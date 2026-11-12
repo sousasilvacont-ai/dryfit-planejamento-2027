@@ -1,5 +1,5 @@
 const assert = require('node:assert/strict');
-require('./painel_tributario.js');
+require('./assets/js/painel_tributario.js');
 const { calculate, compare } = globalThis.Tributario2027;
 
 // Valores de referência: DAS integral, DAS remanescente, híbrido geral,
