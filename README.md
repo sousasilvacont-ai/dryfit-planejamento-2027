@@ -22,6 +22,8 @@ Em **Settings → Pages → Build and deployment**, selecione **Deploy from a br
 
 O comparativo apresenta os parâmetros de planejamento identificados na tela e a referência estimada de CBS descrita nas notas técnicas.
 
+O botão **Tela cheia** no topo usa a Fullscreen API nativa do navegador. O mesmo botão ou a tecla **Esc** retorna à visualização normal. O modo preserva a navegação e o gráfico; a opção aparece quando o navegador disponibiliza a API. Referência técnica: [Fullscreen API](https://developer.mozilla.org/en-US/docs/Web/API/Element/requestFullscreen).
+
 O planejamento apresenta a decisão pelo Simples tradicional no cenário atual da Dryfit. O parecer de ICMS em Goiás, a distinção entre benefícios nas compras e no DAS e as fontes oficiais estão em [docs/PARECER_ICMS_GOIAS.md](docs/PARECER_ICMS_GOIAS.md).
 
 A operação apresentada é industrial: fabricação e venda da produção própria, no Anexo II. Eventual revenda consta somente como ressalva condicional no rodapé do planejamento. O comparativo permanece na produção própria.
