@@ -18,12 +18,12 @@
   </a>
   <nav class="section-nav" aria-label="Navegação da apresentação">
     <a href="#empresa" aria-current="page">1. Empresa & CNAEs</a>
-    <a href="#tributacao">2. Comparativo</a>
-    <a href="#tributos">3. Composição</a>
+    <a href="#atuacao">2. Estratégia</a>
+    <a href="#tributacao">3. Comparativo</a>
     <a href="#alternativas">4. Impacto no Caixa</a>
     <a href="#oportunidades">5. Oportunidades</a>
-    <a href="#atuacao">6. Planejamento</a>
-    <a href="#legislacao">7. Legislação</a>
+    <a href="#legislacao">6. Legislação</a>
+    <a href="#tributos">7. Composição</a>
   </nav>
 </header>
 
@@ -32,7 +32,40 @@
   <!-- SLIDE 1: EMPRESA E CNAES -->
   <section id="empresa" class="presentation-slide company-slide" data-slide><div class="company-identity"><h1 class="companywordmark">Dryfit<span>.</span></h1><p class="company-description">Fabricação e revenda de alimentos.</p><div class="company-data"><div><span>CNPJ</span><strong>67.073.133/0001-69</strong></div><div><span>Localização</span><strong>Anápolis · GO</strong></div></div><div class="company-annexes"><div><strong>Anexo II</strong><span>Produção própria</span></div><div><strong>Anexo I</strong><span>Revenda</span></div></div></div><div class="company-cnae"><h2>Atividades cadastradas</h2><div class="registered-cnae"><span>PRINCIPAL</span><strong>10.31-7/00</strong><p>Fabricação de conservas de frutas</p><small>Inclui frutas secas e desidratadas.</small></div><div class="registered-cnae"><span>SECUNDÁRIO</span><strong>47.29-6/99</strong><p>Varejo de produtos alimentícios em geral ou especializados</p></div><div class="registered-cnae"><span>SECUNDÁRIO</span><strong>47.24-5/00</strong><p>Varejo de hortifrutigranjeiros</p></div><div class="registered-cnae"><span>SECUNDÁRIO</span><strong>10.32-5/99</strong><p>Conservas de legumes e outros vegetais, exceto palmito</p></div><p class="cnae-note">CNAEs cadastrados adequados às atividades apresentadas. Fabricação e revenda serão segregadas na apuração.</p></div></section>
 
-  <!-- SLIDE 2: COMPARATIVO DE RECOLHIMENTO -->
+  <!-- SLIDE 2: ESTRATÉGIA E PLANO DE AÇÃO -->
+  <section id="atuacao" data-slide class="presentation-slide section-block" hidden>
+    <div class="section-heading">
+      <h2>Estratégia para 2027</h2>
+      <p>Manter IBS/CBS no Simples integral neste primeiro momento; reavaliar com os créditos de entrada comprovados e o perfil das vendas.</p>
+    </div>
+    <div class="work-plan">
+      <article>
+        <span class="step-num">ETAPA 1</span>
+        <h3>Mapear compras e créditos</h3>
+        <p>Reunir notas de entrada e identificar compras elegíveis, fornecedores e NCM. <strong>Mercadoria comprada sem nota fiscal idônea não gera crédito apropriável.</strong> A nota, sozinha, também não garante crédito: os requisitos legais precisam ser atendidos.</p>
+      </article>
+
+      <article>
+        <span class="step-num">ETAPA 2</span>
+        <h3>Manter IBS/CBS no Simples</h3>
+        <p>É a estratégia inicial: recolhimento unificado e comparação atual sem créditos de entrada validados. Assim, evitamos recolher IBS/CBS por fora sem saber se os créditos documentados compensam o custo adicional.</p>
+      </article>
+
+      <article>
+        <span class="step-num">ETAPA 3</span>
+        <h3>Reavaliar com dados reais</h3>
+        <p>Comparar créditos comprováveis com IBS/CBS por fora, preços e margens. Segregar produção (<strong>Anexo II</strong>) e revenda (<strong>Anexo I</strong>), emitir notas e acompanhar faturamento e vendas a empresas.</p>
+      </article>
+    </div>
+    <div class="plan-forecast" aria-label="Referência de recolhimento para 2027">
+      <div><span>Receita mensal de referência</span><strong id="planRevenue">R$ 3.000,00</strong></div>
+      <div><span>Revenda · DAS integral</span><strong id="planRetail">R$ 120,00</strong></div>
+      <div><span>Produção · DAS integral</span><strong id="planProduction">R$ 135,00</strong></div>
+    </div>
+    <p class="plan-note">Valores para a mesma receita em cada atividade, com receita constante. Na operação mista, o DAS soma os valores das receitas segregadas.</p>
+  </section>
+
+  <!-- SLIDE 3: COMPARATIVO DE RECOLHIMENTO -->
   <div class="page-title" hidden>
     <h1>Comparativo de Desembolso Tributário</h1>
     <p>Simulação executiva de recolhimento · Cenários para 2027 · Anápolis / GO</p>
@@ -94,10 +127,15 @@
     <div class="comparison-stage">
       <div class="comparison-heading">
         <h2>Simples Integral vs. IBS/CBS por Fora</h2>
+        <div class="chart-credit-control">
+          <label for="productCredit">Crédito estimado de IBS/CBS <output id="productCreditValue" for="productCredit" aria-live="polite">0%</output></label>
+          <input id="productCredit" type="range" min="0" max="100" step="1" value="0" aria-describedby="productCreditHint">
+          <span id="productCreditHint" class="credit-help">Cenário estimado. Crédito real exige compra elegível documentada e regras fiscais atendidas.</span>
+        </div>
       </div>
 
       <!-- Comparação com composição do recolhimento por fora. -->
-      <figure class="chart3d" aria-label="Comparação visual dos totais mensais"><div class="columns"><div class="column-group integral"><div class="column-label"><h3>Simples integral</h3></div><div class="bar-space"><div class="tax-column" id="fullBar" style="--bar-height:139.45"><div class="column-total"><strong id="fullTotal">R$ 135,00</strong><span>/ mês</span><span class="column-rate" id="fullRate">4,50%</span></div></div></div><p class="chart-legend">DAS <strong id="fullDASshare">R$ 135,00</strong></p></div><div class="column-group external"><div class="column-label"><h3>IBS/CBS por fora</h3></div><div class="bar-space"><div class="tax-column" id="hybridBar" style="--bar-height:260"><div class="column-total"><strong id="hybridTotal">R$ 251,70</strong><span>/ mês</span><span class="column-rate" id="hybridRate">8,39%</span></div></div></div><p class="chart-legend"><span>DAS remanescente <strong id="hybridBase">R$ 116,10</strong></span><span>IBS/CBS bruto <strong id="hybridRegular">R$ 135,60</strong></span></p></div></div><div class="chart-floor" aria-hidden="true"></div><figcaption class="estimate-note" id="scenarioLabel">Estimativa · valores brutos sem créditos</figcaption></figure>
+      <figure class="chart3d" aria-label="Comparação visual dos totais mensais com crédito estimado"><div class="columns"><div class="column-group integral"><div class="column-label"><h3>Simples integral</h3></div><div class="bar-space"><div class="tax-column" id="fullBar" style="--bar-height:139.45"><div class="column-total"><strong id="fullTotal">R$ 135,00</strong><span>/ mês</span><span class="column-rate" id="fullRate">4,50%</span></div></div></div><p class="chart-legend">DAS <strong id="fullDASshare">R$ 135,00</strong></p></div><div class="column-group external"><div class="column-label"><h3>IBS/CBS por fora</h3></div><div class="bar-space"><div class="tax-column" id="hybridBar" style="--bar-height:260"><div class="column-total"><strong id="hybridTotal">R$ 251,70</strong><span>/ mês</span><span class="column-rate" id="hybridRate">8,39%</span></div></div></div><p class="chart-legend"><span>DAS remanescente <strong id="hybridBase">R$ 116,10</strong></span><span>IBS/CBS líquido <strong id="hybridRegular">R$ 135,60</strong></span><span>Créditos estimados <strong id="productCreditAmount">R$ 0,00</strong></span></p></div></div><div class="chart-floor" aria-hidden="true"></div><figcaption class="estimate-note" id="scenarioLabel">Estimativa · créditos estimados: 0% · benefício só por fora</figcaption></figure>
 
       <div class="decision-message">
         <h3 id="decisionTitle">Impacto direto no caixa</h3>
@@ -107,12 +145,12 @@
 
       <div class="tax-detail">
         <div>
-          <span>CBS por fora</span>
+          <span>CBS líquida</span>
           <strong id="cbsApplied">4,48%</strong>
           <small id="cbsAmount">R$ 134,40 / mês</small>
         </div>
         <div>
-          <span>IBS por fora</span>
+          <span>IBS líquida</span>
           <strong id="ibsApplied">0,04%</strong>
           <small id="ibsAmount">R$ 1,20 / mês</small>
         </div>
@@ -122,48 +160,11 @@
           <small id="benefitProductHint">Frutas secas sem adição de açúcar</small>
         </div>
       </div>
-      <p class="estimate-note">Estimativa 2027 · CBS 11,2% + IBS 0,1% antes do benefício · débitos brutos, sem créditos.</p>
+      <p class="estimate-note">O controle simula créditos somente no IBS/CBS do regime regular; ele não altera o DAS do Simples integral.</p>
     </div>
   </section>
 
   <p id="statusText" class="sr-only" role="status" aria-live="polite"></p>
-
-  <!-- SLIDE 3: ONDE ENTRA CADA TRIBUTO -->
-  <section id="tributos" class="presentation-slide section-block" data-slide hidden>
-    <div class="section-heading">
-      <h2>Composição dos Tributos</h2>
-      <p><span id="taxTableActivityRef">Produção · Anexo II</span> · receita <span id="taxTableMonthRef">R$ 3.000,00</span>.</p>
-    </div>
-    <div class="table-scroll">
-      <table class="tax-table">
-        <thead>
-          <tr>
-            <th scope="col">Tributo</th>
-            <th scope="col">Simples Integral<br>Alíquota Efetiva</th>
-            <th scope="col">Valor no DAS</th>
-            <th scope="col">IBS/CBS por Fora<br>Alíquota Efetiva</th>
-            <th scope="col">Valor Recolhido</th>
-            <th scope="col">Forma de Recolhimento</th>
-          </tr>
-        </thead>
-        <tbody id="taxRows"></tbody>
-        <tfoot>
-          <tr>
-            <th>Total Mensal</th>
-            <td id="taxFullRate"></td>
-            <td id="taxFullAmount"></td>
-            <td id="taxHybridRate"></td>
-            <td id="taxHybridAmount"></td>
-            <td>Guia única vs. Duas apurações</td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
-    <div class="tax-explanation">
-      <p><strong>Integral:</strong> tributos da atividade reunidos no DAS. IPI apenas na produção própria.</p>
-      <p><strong>Híbrido:</strong> tributos remanescentes no DAS; IBS/CBS separados, com o tratamento do produto.</p>
-    </div>
-  </section>
 
   <!-- SLIDE 4: IMPACTO NO CAIXA -->
   <section id="alternativas" data-slide class="presentation-slide section-block" hidden>
@@ -193,7 +194,7 @@
       </article>
       <article>
         <h3>B2B · venda a empresas</h3>
-        <p>O DAS segue a atividade, como no B2C. Cliente no regime regular recebe crédito de IBS/CBS limitado ao devido no Simples.</p>
+        <p>No Simples integral, o comprador PJ <strong>não recebe o crédito integral do regime regular</strong>. Pela LC 214/2025, pode aproveitar crédito limitado ao IBS/CBS devido pelo fornecedor dentro do Simples, observadas as regras legais.</p>
       </article>
       <article>
         <h3>Alternativa · modelo híbrido</h3>
@@ -249,40 +250,7 @@
     <button type="button" class="source-button" data-open-products>Ver produtos, NCMs e condições</button>
   </section>
 
-  <!-- SLIDE 6: PLANO DE AÇÃO -->
-  <section id="atuacao" data-slide class="presentation-slide section-block" hidden>
-    <div class="section-heading">
-      <h2>Como vamos trabalhar em 2027</h2>
-      <p>Simples integral · B2B e B2C.</p>
-    </div>
-    <div class="work-plan">
-      <article>
-        <span class="step-num">ETAPA 1</span>
-        <h3>Organizar produtos e receitas</h3>
-        <p>Cadastrar produtos com descrição, <strong>NCM e origem</strong>. Separar fabricação própria (<strong>Anexo II</strong>) e comércio (<strong>Anexo I</strong>), quando houver revenda.</p>
-      </article>
-
-      <article>
-        <span class="step-num">ETAPA 2</span>
-        <h3>Continuar no Simples integral</h3>
-        <p>Em 2027, manter o Simples integral, <strong>mais vantajoso nos cenários apresentados</strong>. Os benefícios de IBS/CBS por produto analisados aqui não reduzem o DAS integral.</p>
-      </article>
-
-      <article>
-        <span class="step-num">ETAPA 3</span>
-        <h3>Executar e acompanhar</h3>
-        <p><strong>Emitir notas fiscais</strong>, cadastrar novos produtos, conferir receitas e apurar o DAS. Avaliar a evolução da empresa, o faturamento e as margens de B2B e B2C.</p>
-      </article>
-    </div>
-    <div class="plan-forecast" aria-label="Referência de recolhimento para 2027">
-      <div><span>Receita mensal de referência</span><strong id="planRevenue">R$ 3.000,00</strong></div>
-      <div><span>Revenda · DAS integral</span><strong id="planRetail">R$ 120,00</strong></div>
-      <div><span>Produção · DAS integral</span><strong id="planProduction">R$ 135,00</strong></div>
-    </div>
-    <p class="plan-note">Valores para a mesma receita em cada atividade, com receita constante. Na operação mista, o DAS soma os valores das receitas segregadas.</p>
-  </section>
-
-  <!-- SLIDE 7: LEGISLAÇÃO -->
+  <!-- SLIDE 6: FUNDAMENTO LEGAL -->
   <section id="legislacao" class="presentation-slide section-block legal-slide" data-slide hidden>
     <div class="section-heading">
       <h2>Legislação e Normas</h2>
@@ -316,7 +284,7 @@
       <article>
         <span class="law-label">B2B e B2C</span>
         <h3>Venda a empresas no Simples integral</h3>
-        <p>Comprador no regime regular: crédito limitado ao IBS/CBS devido pelo fornecedor no Simples. B2C mantém foco no preço final.</p>
+        <p>Na venda pelo Simples integral, o comprador no regime regular <strong>não recebe o crédito integral</strong>. A LC 214 permite crédito limitado ao IBS/CBS devido pelo fornecedor no Simples, observadas as regras legais. B2C mantém foco no preço final.</p>
         <strong>O tipo de cliente não muda o Anexo</strong>
         <a href="https://legis.senado.gov.br/norma/40180341/publicacao/40181429" target="_blank" rel="noopener noreferrer">LC 214/2025 · art. 47, § 9º, II</a>
       </article>
@@ -324,7 +292,44 @@
 
     <button type="button" id="legalToggle" class="source-button">Ver notas técnicas completas</button>
   </section>
-</main>
+<!-- SLIDE 7: COMPOSIÇÃO DOS TRIBUTOS -->
+  <section id="tributos" class="presentation-slide section-block" data-slide hidden>
+    <div class="section-heading">
+      <h2>Composição dos Tributos</h2>
+      <p><span id="taxTableActivityRef">Produção · Anexo II</span> · receita <span id="taxTableMonthRef">R$ 3.000,00</span>.</p>
+    </div>
+    <div class="table-scroll">
+      <table class="tax-table">
+        <thead>
+          <tr>
+            <th scope="col">Tributo</th>
+            <th scope="col">Simples Integral<br>Alíquota Efetiva</th>
+            <th scope="col">Valor no DAS</th>
+            <th scope="col">IBS/CBS por Fora<br>Alíquota Efetiva</th>
+            <th scope="col">Valor Recolhido</th>
+            <th scope="col">Forma de Recolhimento</th>
+          </tr>
+        </thead>
+        <tbody id="taxRows"></tbody>
+        <tfoot>
+          <tr>
+            <th>Total Mensal</th>
+            <td id="taxFullRate"></td>
+            <td id="taxFullAmount"></td>
+            <td id="taxHybridRate"></td>
+            <td id="taxHybridAmount"></td>
+            <td>Guia única vs. Duas apurações</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div class="tax-explanation">
+      <p><strong>Integral:</strong> tributos da atividade reunidos no DAS. IPI apenas na produção própria.</p>
+      <p><strong>Híbrido:</strong> tributos remanescentes no DAS; IBS/CBS separados, com o tratamento do produto.</p>
+    </div>
+  </section>
+
+  </main>
 
 <!-- DIALOGS -->
 <dialog id="legalDialog" class="products-dialog" aria-labelledby="legalTitle">
@@ -336,10 +341,11 @@
     <p>Simulação elaborada sob a legislação vigente (LC 123/2006 e LC 214/2025) para o ano de 2027.</p>
     <p><strong>Produção e revenda:</strong> Anexo II e Anexo I, respectivamente. Alíquotas iniciais 4,5% e 4%; a RBT12 total determina a faixa. A simulação mostra toda a receita em uma atividade por vez, sem inventar divisão das vendas.</p>
     <p><strong>Benefício por produto:</strong> a redução de 60% e a alíquota zero da LC 214 são aplicadas somente aos débitos de IBS/CBS do regime regular por fora. Não reduzem o DAS integral. Fundamento: LC 214, art. 41, §§ 2º e 3º, e <a href="https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp123.htm#art24" target="_blank" rel="noopener noreferrer">LC 123, art. 24, § 1º</a>.</p>
+    <p><strong>Créditos de entrada:</strong> no regime regular, a apropriação depende de operação elegível, extinção do débito nas condições legais e documento fiscal eletrônico idôneo (LC 214/2025, art. 47 e § 1º, II). Compra sem nota fiscal idônea não permite crédito apropriável; a nota isolada não basta.</p>
     <p><strong>Alíquotas estimadas:</strong> referência CBS de 11,3% estimada pelo TCU, com redução transitória de 0,1 ponto: CBS 11,2% + IBS 0,1%. Com redução de 60%: CBS 4,48% e IBS 0,04%. <a href="https://portal.tcu.gov.br/imprensa/noticias/tcu-calcula-aliquota-de-referencia-de-113-para-novo-tributo-sobre-consumo" target="_blank" rel="noopener noreferrer">Estimativa oficial do TCU</a>.</p>
     <p><strong>Base do comparativo:</strong> receita mensal usada como base ilustrativa dos débitos brutos de IBS/CBS, sem créditos. A apuração real ajusta a base pelos tributos excluídos e documentos da operação.</p>
     <p><strong>Tabelas 2027–2028:</strong> <a href="https://legis.senado.gov.br/norma/40180341/publicacao/40181079" target="_blank" rel="noopener noreferrer">Anexo I</a> e <a href="https://legis.senado.gov.br/norma/40180341/publicacao/40181111" target="_blank" rel="noopener noreferrer">Anexo II</a>. Em janeiro/2027, a regra proporcional de início de atividade utiliza os meses de maio a novembro/2026; sem histórico real, esta apresentação usa receita constante.</p>
-    <p><strong>Calendário de opção:</strong> de 1º a 31 de março/2027 para o modelo híbrido com efeitos de julho a dezembro/2027, conforme <a href="https://www8.receita.fazenda.gov.br/SIMPLESNACIONAL/noticias/noticiacompleta.aspx?id=E595D010-1E04-4C3B-95D9-185FC58594B5" target="_blank" rel="noopener noreferrer">Receita Federal / CGSN</a>. A apresentação não formaliza opção tributária.</p>
+    <p><strong>Prazo IBS/CBS em 2027:</strong> para o primeiro semestre, a Receita informou opção até 30/10/2026 e cancelamento entre 03/11 e 20/12/2026. Como a janela de opção já terminou, conferir a escolha registrada e o prazo vigente antes de qualquer alteração. <a href="https://www.gov.br/receitafederal/pt-br/assuntos/noticias/2026/setembro/simples-nacional-2027-entenda-os-novos-prazos-e-faca-sua-escolha-com-consciencia-e-tranquilidade/" target="_blank" rel="noopener noreferrer">Receita Federal · prazos de 2027</a>. A apresentação não formaliza opção tributária.</p>
   </div>
 </dialog>
 

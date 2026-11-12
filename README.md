@@ -2,6 +2,8 @@
 
 Apresentação interativa, estática e pronta para publicação no GitHub Pages. A página principal está em `index.html`; ela não precisa de build, servidor de aplicação ou dependências externas.
 
+O controle de créditos estimados varia de 0% a 100% e reduz somente IBS/CBS por fora na simulação; o DAS permanece inalterado. Ele é hipotético: crédito real depende de aquisição elegível, documento fiscal eletrônico idôneo e demais requisitos legais. Compra sem nota idônea não permite apropriar crédito.
+
 ## Estrutura
 
 - `index.html` — apresentação principal.

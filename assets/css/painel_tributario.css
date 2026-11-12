@@ -126,6 +126,12 @@
   .comparison-heading { display: flex; align-items: end; justify-content: space-between; gap: 20px; padding-bottom: 17px; border-bottom: 1px solid var(--navy-line); }
   .comparison-heading h2 { color: var(--on-navy); font-size: 1.25rem; }
   .comparison-heading p { margin-top: 5px; color: var(--on-navy-muted); font-size: .8125rem; }
+  .chart-credit-control { display: grid; width: min(100%, 250px); flex: 0 0 auto; gap: 2px; padding: 6px 10px; border: 1px solid #39516b; border-radius: 6px; background: #0b2039; }
+  .chart-credit-control label { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 0; color: var(--on-navy); font-size: .75rem; font-weight: 640; }
+  .chart-credit-control output { color: var(--gold-soft); font-size: .875rem; font-weight: 750; font-variant-numeric: tabular-nums; }
+  .chart-credit-control input[type="range"] { --range-color: var(--gold); min-height: 28px; margin: 0; }
+  .chart-credit-control input[type="range"]::-webkit-slider-runnable-track { background: #52677f; }
+  .credit-help { color: #c3d0d9; font-size: .68rem; line-height: 1.35; }
 
   .chart3d { padding-top: 24px; }
   .columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: end; gap: clamp(28px, 7vw, 76px); min-height: 360px; padding: 0 clamp(10px, 5vw, 56px); }
@@ -267,6 +273,7 @@
     .control-value { font-size: 1.55rem; }
     .comparison-stage { padding: 21px 16px 22px; }
     .comparison-heading { display: block; padding-bottom: 13px; }
+    .chart-credit-control { margin-top: 10px; }
     .comparison-heading h2 { font-size: 1.0625rem; }
     .columns { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; min-height: 326px; padding: 0 9px; }
     .column-label { min-height: 43px; }
