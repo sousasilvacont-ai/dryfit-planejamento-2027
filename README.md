@@ -26,7 +26,7 @@ O planejamento apresenta a decisão pelo Simples tradicional no cenário atual d
 
 A operação apresentada é industrial: fabricação e venda da produção própria, no Anexo II. Eventual revenda consta somente como ressalva condicional no rodapé do planejamento. O comparativo permanece na produção própria.
 
-O B2B apresenta em um parágrafo a tributação pelo faturamento no Simples, a compensação de créditos no modelo com IBS/CBS por fora e o crédito inferior a 1% da venda para o cliente empresarial no regime regular, limitado às faixas analisadas. Percentuais detalhados e exemplo numérico ficam nas notas técnicas e no parecer. O motor de cálculo mantém a partilha de CBS/IBS de 2027 e sua validação independente do slider hipotético de créditos da indústria.
+O B2B apresenta dois parágrafos por regime: no Simples tradicional, tributação pelo faturamento e crédito inferior a 1% da venda para o comprador no regime regular, limitado às faixas analisadas; com IBS/CBS por fora, o comprador pode aproveitar o IBS/CBS integral incidente na operação e a indústria passa a descontar créditos de compras elegíveis. O crédito do comprador é maior nas frutas secas tributadas analisadas. Seu valor segue a tributação do produto e os requisitos legais; alíquota zero não cria crédito da operação para o adquirente. Percentuais detalhados e exemplo numérico ficam nas notas técnicas e no parecer. O motor de cálculo mantém a partilha de CBS/IBS de 2027 e sua validação independente do slider hipotético de créditos da indústria.
 
 ## Validação local
 
