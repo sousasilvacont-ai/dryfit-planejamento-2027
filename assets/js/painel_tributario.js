@@ -265,7 +265,7 @@
     text('planProduction', money.format(calculate(month, month * 12, 'II').das));
 
     const gap = r.differenceFromFullDas;
-    text('monthlyGap', 'Variação do desembolso: ' + (gap > 0 ? '+' : '') + money.format(gap) + ' / mês');
+    text('monthlyGap', 'Diferença no pagamento: ' + (gap > 0 ? '+' : '') + money.format(gap) + ' / mês');
 
     text('decisionTitle', 'Comparativo de Desembolso para a Dryfit');
     text('decisionText',

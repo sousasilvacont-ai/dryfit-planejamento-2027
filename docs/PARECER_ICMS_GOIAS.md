@@ -19,7 +19,7 @@ O planejamento definido é o Simples tradicional para o cenário atual analisado
 
 Frutas secas e coco não integram a monofasia de combustíveis do art. 172 da LC 214/2025. Frutas secas elegíveis do item 14 do Anexo VII têm redução de 60% no regime regular. Coco dessecado 0801.11.00 integra a subposição 0801.1 do Anexo XV, com alíquota zero nesse regime. Esses tratamentos são demonstrados na comparação de IBS/CBS por fora.
 
-Créditos no regime regular dependem da aquisição elegível, documento fiscal idôneo e liberação fiscal, observadas a extinção do débito e as exceções dos arts. 47–48. No split payment, o tributo é recolhido na liquidação do pagamento. Receber uma venda não libera automaticamente créditos das compras. No Simples tradicional, a empresa não desconta créditos de entrada de IBS/CBS no DAS; o adquirente regular pode aproveitar o montante permitido pelo art. 47, § 9º, II.
+Créditos no regime regular dependem da aquisição elegível, documento fiscal idôneo e liberação fiscal, observadas a extinção do débito e as exceções dos arts. 47–48. No Simples tradicional, a empresa não desconta créditos de entrada de IBS/CBS no DAS; nas vendas B2B, o adquirente regular pode aproveitar crédito limitado ao montante de IBS/CBS devido pelo fornecedor no Simples, conforme art. 47, § 9º, II.
 
 ## Fontes primárias e alcance
 
