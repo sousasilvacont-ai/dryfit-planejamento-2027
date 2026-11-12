@@ -26,7 +26,7 @@ O planejamento apresenta a decisão pelo Simples tradicional no cenário atual d
 
 A operação apresentada é industrial: fabricação e venda da produção própria, no Anexo II. Eventual revenda consta somente como ressalva condicional no rodapé do planejamento. O comparativo permanece na produção própria.
 
-O B2B distingue o crédito do comprador no regime regular dos créditos de entrada da Dryfit. Para 2027, nas faixas simuladas do Anexo II, CBS e IBS representam 13,85% e 0,15% do DAS. Com DAS de 4,5%, correspondem a 0,62325% e 0,00675% da venda: total de 0,63%, ou R$ 6,30 em R$ 1.000. Percentuais e exemplo acompanham a alíquota efetiva selecionada, sem relação com o slider hipotético de créditos da indústria no cenário por fora. As referências legais ficam nos fundamentos e no parecer.
+O B2B apresenta dois parágrafos por regime: no Simples tradicional, tributação pelo faturamento e crédito inferior a 1% da venda para o comprador no regime regular, limitado às faixas analisadas; com IBS/CBS por fora, o comprador pode aproveitar o IBS/CBS integral incidente na operação e a indústria passa a descontar créditos de compras elegíveis. O crédito do comprador é maior nas frutas secas tributadas analisadas. Seu valor segue a tributação do produto e os requisitos legais; alíquota zero não cria crédito da operação para o adquirente. Percentuais detalhados e exemplo numérico ficam nas notas técnicas e no parecer. O motor de cálculo mantém a partilha de CBS/IBS de 2027 e sua validação independente do slider hipotético de créditos da indústria.
 
 ## Validação local
 

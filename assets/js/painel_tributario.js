@@ -167,7 +167,6 @@
 
   const money = new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'});
   const percent = new Intl.NumberFormat('pt-BR',{style:'percent',minimumFractionDigits:2,maximumFractionDigits:2});
-  const creditPercentFormat = new Intl.NumberFormat('pt-BR',{style:'percent',minimumFractionDigits:2,maximumFractionDigits:7});
   const currentAnnex = 'II';
   let custom = false, customInitialized = false, benefit = 'reduced', selectedProduct = 'Frutas secas sem adição de açúcar';
 
@@ -260,11 +259,6 @@
     text('comparisonScenario', 'Produção · Anexo II · ' + (benefit === 'zero' ? 'Alíquota zero por fora' : benefit === 'reduced' ? 'Redução de 60% por fora' : 'Regra geral por fora'));
     text('planRevenue', money.format(month));
     text('planProduction', money.format(r.fullDas));
-    const buyer = buyerCredit(month, annual);
-    text('buyerCbsRate', creditPercentFormat.format(buyer.cbsRate));
-    text('buyerIbsRate', creditPercentFormat.format(buyer.ibsRate));
-    text('buyerTotalRate', creditPercentFormat.format(buyer.totalRate));
-    text('buyerCreditExample', money.format(buyer.exampleAmount));
 
     const gap = r.differenceFromFullDas;
     text('monthlyGap', 'Diferença no pagamento: ' + (gap > 0 ? '+' : '') + money.format(gap) + ' / mês');
