@@ -31,7 +31,7 @@
 <main class="page-width">
 
   <!-- SLIDE 1: EMPRESA E CNAES -->
-  <section id="empresa" class="presentation-slide company-slide" data-slide><div class="company-identity"><h1 class="companywordmark">Dryfit<span>.</span></h1><p class="company-description">Fabricação e revenda de alimentos.</p><div class="company-data"><div><span>CNPJ</span><strong>67.073.133/0001-69</strong></div><div><span>Localização</span><strong>Anápolis · GO</strong></div></div><div class="company-annexes"><div><strong>Anexo II</strong><span>Produção própria</span></div><div><strong>Anexo I</strong><span>Revenda</span></div></div></div><div class="company-cnae"><h2>Atividades cadastradas</h2><div class="registered-cnae"><span>PRINCIPAL</span><strong>10.31-7/00</strong><p>Fabricação de conservas de frutas</p><small>Inclui frutas secas e desidratadas.</small></div><div class="registered-cnae"><span>SECUNDÁRIO</span><strong>47.29-6/99</strong><p>Varejo de produtos alimentícios em geral ou especializados</p></div><div class="registered-cnae"><span>SECUNDÁRIO</span><strong>47.24-5/00</strong><p>Varejo de hortifrutigranjeiros</p></div><div class="registered-cnae"><span>SECUNDÁRIO</span><strong>10.32-5/99</strong><p>Conservas de legumes e outros vegetais, exceto palmito</p></div><p class="cnae-note">Enquadramento: fabricação no Anexo II e revenda no Anexo I, com receitas separadas na apuração.</p></div></section>
+  <section id="empresa" class="presentation-slide company-slide" data-slide><div class="company-identity"><h1 class="companywordmark">Dryfit<span>.</span></h1><p class="company-description">Indústria de alimentos.<br>Desenvolvimento e fabricação de produtos próprios.</p><div class="company-data"><div><span>CNPJ</span><strong>67.073.133/0001-69</strong></div><div><span>Localização</span><strong>Anápolis · GO</strong></div></div><div class="company-annexes"><div><strong>Anexo II</strong><span>Produção própria</span></div></div></div><div class="company-cnae"><h2>Atividades industriais cadastradas</h2><div class="registered-cnae"><span>PRINCIPAL</span><strong>10.31-7/00</strong><p>Fabricação de conservas de frutas</p><small>Inclui frutas secas e desidratadas.</small></div><div class="registered-cnae"><span>SECUNDÁRIO</span><strong>10.32-5/99</strong><p>Conservas de legumes e outros vegetais, exceto palmito</p></div><p class="cnae-note">Planejamento da fabricação e da venda da produção própria no Simples tradicional.</p></div></section>
 
   <!-- SLIDE 2: ESTRATÉGIA E PLANO DE AÇÃO -->
   <section id="atuacao" data-slide class="presentation-slide section-block" hidden>
@@ -43,13 +43,13 @@
       <article>
         <span class="step-num">ETAPA 1</span>
         <h3>Cadastro fiscal dos produtos</h3>
-        <p>Configurar os produtos por <strong>NCM, composição e origem</strong>. Distinguir produção própria e revenda para aplicar a tributação correspondente a cada operação.</p>
+        <p>Configurar matérias-primas e produtos acabados por <strong>NCM, composição e origem</strong>, com o cadastro fiscal adequado à fabricação.</p>
       </article>
 
       <article>
         <span class="step-num">ETAPA 2</span>
         <h3>Documentação e apuração</h3>
-        <p>Emitir <strong>notas fiscais de entrada e saída</strong>, conferir receitas e apurar os impostos no Simples tradicional, com fabricação e revenda tratadas separadamente.</p>
+        <p>Emitir <strong>notas fiscais de entrada e saída</strong> conforme a operação, conferir compras de insumos e apurar as vendas da produção própria no Anexo II.</p>
       </article>
 
       <article>
@@ -60,19 +60,18 @@
     </div>
     <div class="plan-forecast" aria-label="Referência de recolhimento para 2027">
       <div><span>Receita mensal de referência</span><strong id="planRevenue">R$ 3.000,00</strong></div>
-      <div><span>Imposto mensal da revenda</span><strong id="planRetail">R$ 120,00</strong></div>
       <div><span>Imposto mensal da produção</span><strong id="planProduction">R$ 135,00</strong></div>
     </div>
+    <p class="operation-footnote"><small>Se houver revenda de produtos adquiridos de terceiros, separar essas receitas das vendas da produção própria e apurá-las no Anexo I.</small></p>
   </section>
 
   <!-- SLIDE 3: COMPARATIVO DE RECOLHIMENTO -->
   <div class="page-title" hidden>
     <h1>Quanto a empresa recolhe por mês</h1>
-    <p>Planejamento 2027 · fabricação e revenda · Anápolis / GO</p>
+    <p>Planejamento 2027 · indústria de alimentos · Anápolis / GO</p>
     <div class="company-meta">
       <span>CNPJ 67.073.133/0001-69</span>
       <span id="annexContext">Produção própria · Anexo II</span>
-      <span>Revenda Varejo: Anexo I (4,00%)</span>
     </div>
   </div>
 
@@ -86,12 +85,8 @@
       </div>
 
       <div class="field activity-choice">
-        <span class="field-label">Atividade da receita</span>
-        <div class="segmented" role="group" aria-label="Enquadramento da mercadoria">
-          <button type="button" id="activityAnnex2" aria-pressed="true">Produção própria · II</button>
-          <button type="button" id="activityAnnex1" aria-pressed="false">Revenda · I</button>
-        </div>
-        <p class="hint" id="activityHint">Produção própria no CNAE 1031-7/00 (4,5%). Revenda com CNAEs de comércio · Anexo I.</p>
+        <span class="field-label">Operação analisada</span>
+        <div class="product-benefit-fixed"><strong>Fabricação própria · Anexo II</strong><span>Simples tradicional · alíquota inicial de 4,5%</span></div>
       </div>
 
       <div class="field product-choice">
@@ -190,15 +185,17 @@
     <div class="regime-grid">
       <article>
         <h3>B2C · venda ao consumidor final</h3>
-        <p>O preço de venda e a margem consideram os tributos reunidos no DAS, conforme a atividade e a faixa de faturamento.</p>
+        <p>O preço dos produtos próprios e a margem da indústria consideram os tributos reunidos no DAS, conforme a faixa de faturamento.</p>
       </article>
-      <article>
+      <article class="b2b-credit">
         <h3>B2B · venda a empresas</h3>
-        <p>Clientes no regime regular <strong>podem aproveitar crédito de IBS/CBS nas compras da Dryfit</strong>, limitado ao valor desses tributos devido no Simples. LC 214/2025, art. 47, § 9º, II.</p>
+        <p>O cliente que apura IBS/CBS no regime regular, por fora do Simples, pode aproveitar a parcela desses tributos no DAS da Dryfit. Cliente com IBS/CBS dentro do DAS não aproveita crédito.</p>
+        <p class="buyer-credit-rates">Do valor do DAS: CBS de 13,85% e IBS de 0,15%. Sobre a venda: <strong>CBS <span id="buyerCbsRate">0,62325%</span> + IBS <span id="buyerIbsRate">0,00675%</span> = <span id="buyerTotalRate">0,63%</span></strong>.</p>
+        <p>Em uma compra de R$ 1.000: <strong>até <span id="buyerCreditExample">R$ 6,30</span> de crédito</strong>, com nota fiscal idônea e cumpridos os requisitos fiscais. Percentuais da faixa selecionada, em 2027.</p>
       </article>
       <article>
         <h3>Documentos e recebimentos</h3>
-        <p>As notas de compra e venda sustentam o cálculo dos impostos. O acompanhamento dos pagamentos mantém o controle do caixa.</p>
+        <p>A Dryfit, no Simples tradicional, não desconta créditos de IBS/CBS das suas compras. Notas fiscais e controle dos recebimentos sustentam a apuração e o acompanhamento do caixa.</p>
       </article>
     </div>
   </section>
@@ -207,8 +204,8 @@
   <section id="oportunidades" data-slide class="presentation-slide section-block" hidden>
     <div class="section-heading"><h2>Oportunidades na reforma tributária</h2><p>Redução de 60%, alíquota zero e créditos de IBS/CBS por produto.</p></div>
     <div class="opportunity-list">
-      <article><div><h3>Maçã, damasco e ameixa secos</h3><span class="status">Redução de 60% · IBS/CBS</span></div><p>NCM 0813.30.00, 0813.10.00 e 0813.20.10/20, sem açúcar ou edulcorantes. No cenário regular de 2027: <strong>CBS estimada de 4,48% + IBS de 0,04%</strong>. Fundamento: Anexo VII, item 14.</p></article>
-      <article><div><h3>Coco dessecado</h3><span class="status">Alíquota zero · IBS/CBS</span></div><p>NCM 0801.11.00: <strong>CBS de 0% + IBS de 0%</strong> no regime regular, pela previsão do Anexo XV, item 6. O DAS remanescente é devido no modelo por fora.</p></article>
+      <article><div><h3>Maçã, damasco e ameixa secos</h3><span class="status">Redução de 60% · IBS/CBS</span></div><p>NCM 0813.30.00, 0813.10.00 e 0813.20.10/20, sem açúcar ou edulcorantes. No cenário regular de 2027: <strong>CBS estimada de 4,48% + IBS de 0,04%</strong>.</p></article>
+      <article><div><h3>Coco dessecado</h3><span class="status">Alíquota zero · IBS/CBS</span></div><p>NCM 0801.11.00: <strong>CBS de 0% + IBS de 0%</strong> no regime regular. O DAS remanescente é devido no modelo por fora.</p></article>
       <article><div><h3>Créditos nas compras</h3><span class="status">Regime regular · notas fiscais</span></div><p>As notas fiscais das compras comprovam os créditos que podem reduzir IBS/CBS no regime regular, conforme as regras de aproveitamento.</p></article>
       <article><div><h3>Aplicação ao planejamento</h3><span class="status">Simples tradicional · decisão atual</span></div><p>As oportunidades acima estão demonstradas no comparativo com IBS/CBS por fora. As frutas secas e o coco analisados não têm monofasia de IBS/CBS. <strong>A Dryfit seguirá no Simples tradicional.</strong></p></article>
     </div>
@@ -219,7 +216,7 @@
   <section id="legislacao" class="presentation-slide section-block legal-slide" data-slide hidden>
     <div class="section-heading"><h2>Fundamentos do planejamento</h2><p>Legislação e orientações oficiais consultadas em 12/11/2026.</p></div>
     <div class="legal-grid">
-      <article><span class="law-label">Regime definido</span><h3>Simples tradicional</h3><p>Produção própria no Anexo II e revenda no Anexo I. Receitas segregadas e faixa determinada pelo faturamento acumulado.</p><strong>Recolhimento unificado no DAS</strong><a href="https://legis.senado.gov.br/norma/40180341/publicacao/40181429" target="_blank" rel="noopener noreferrer">LC 123/2006 e LC 214/2025 · art. 41</a></article>
+      <article><span class="law-label">Regime definido</span><h3>Simples tradicional</h3><p>Fabricação e venda da produção própria no Anexo II. Faixa determinada pelo faturamento acumulado.</p><strong>Recolhimento unificado no DAS</strong><a href="https://legis.senado.gov.br/norma/40180341/publicacao/40181429" target="_blank" rel="noopener noreferrer">LC 123/2006 e LC 214/2025 · art. 41</a></article>
       <article><span class="law-label">IBS/CBS por produto</span><h3>Frutas secas e coco dessecado</h3><p>Redução de 60% para frutas secas elegíveis e alíquota zero para coco dessecado. Aplicação no regime regular de IBS/CBS.</p><strong>Benefícios por NCM e composição</strong><a href="https://legis.senado.gov.br/norma/40180341/publicacao/40180967" target="_blank" rel="noopener noreferrer">LC 214 · Anexo VII</a><a href="https://legis.senado.gov.br/norma/40180341/publicacao/40181038" target="_blank" rel="noopener noreferrer">LC 214 · Anexo XV</a></article>
       <article><span class="law-label">ICMS no Simples · Goiás</span><h3>Tributação das vendas</h3><p>A isenção geral de hortifrutícolas não é aplicável à parcela do ICMS no DAS. Os NCMs analisados não constam da lista vigente de ST por produto.</p><strong>Manter o ICMS no DAS</strong><a href="https://orientacaotributaria.economia.go.gov.br/spo-web/perguntasfrequentes/perguntafrequente/20872" target="_blank" rel="noopener noreferrer">Economia/GO · orientação 20872</a></article>
       <article><span class="law-label">Compras interestaduais · Goiás</span><h3>Dispensa e isenção do DIFAL-SN</h3><p>Dispensa na faixa de receita analisada. Isenção para matéria-prima empregada na fabricação, nos termos da norma estadual.</p><strong>Redução do custo de entrada</strong><a href="https://appasp.economia.go.gov.br/legislacao/arquivos/Rcte/Anexos/ANEXO_20_DA_APURACAO_E_DO_PAGAMENTO_DO_ICMS_DIFAL_SN.htm" target="_blank" rel="noopener noreferrer">RCTE/GO · Anexo XX, art. 2º, IV</a><a href="https://appasp.economia.go.gov.br/legislacao/arquivos/Decretos/D_10611.htm" target="_blank" rel="noopener noreferrer">Anexo IX · art. 6º, CXXIV</a></article>
@@ -273,18 +270,19 @@
   </div>
   <div class="detail-content">
     <p>Simulação elaborada sob a legislação vigente (LC 123/2006 e LC 214/2025) para o ano de 2027.</p>
-    <p><strong>Produção e revenda:</strong> Anexo II e Anexo I, respectivamente. Alíquotas iniciais 4,5% e 4%; a RBT12 total determina a faixa. O comparativo calcula cada atividade separadamente, com a mesma receita.</p>
+    <p><strong>Produção própria:</strong> Anexo II, com alíquota inicial de 4,5%; a RBT12 determina a faixa. O comparativo apresenta a fabricação e a venda dos produtos da indústria.</p>
     <p><strong>Benefício por produto:</strong> a redução de 60% e a alíquota zero da LC 214 são aplicadas somente aos débitos de IBS/CBS do regime regular por fora. Não reduzem o DAS integral. Fundamento: LC 214, art. 41, §§ 2º e 3º, e <a href="https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp123.htm#art24" target="_blank" rel="noopener noreferrer">LC 123, art. 24, § 1º</a>.</p>
     <p><strong>Monofasia na atividade apresentada:</strong> frutas secas e coco não integram a lista de combustíveis do art. 172 da LC 214/2025. Portanto, não há redução por monofasia de IBS/CBS para esses produtos. NCM e composição definem o tratamento do produto.</p>
     <p><strong>Créditos no regime regular:</strong> exigem compra elegível e nota fiscal idônea. <strong>Mercadoria comprada sem nota fiscal idônea não gera crédito apropriável.</strong> O aproveitamento segue as condições de recolhimento ou compensação do tributo e as exceções previstas no art. 48. Fundamento: LC 214, arts. 47–48.</p>
-    <p><strong>Simples tradicional:</strong> a Dryfit não apropria créditos de entrada de IBS/CBS no DAS. Nas suas vendas, o comprador PJ regular pode aproveitar crédito limitado ao IBS/CBS devido no Simples, conforme art. 47, § 9º, II.</p>
-    <p><strong>ICMS em Goiás — vendas:</strong> para os NCMs 0813.10.00, 0813.20.10/20, 0813.30.00 e 0801.11.00, as operações usuais de fabricação e revenda analisadas não estão na lista vigente de substituição pelas operações posteriores por produto. RCTE/GO, Anexo VIII, art. 32 e Apêndice II. A antiga lista do Apêndice X vigorou até 30/06/2007 e não fundamenta o enquadramento atual. Cadeias especiais de franquia, marketing direto e operações com outros destinos seguem suas próprias regras.</p>
+    <p><strong>Crédito do comprador B2B:</strong> a Dryfit não apropria créditos de entrada de IBS/CBS no DAS. O comprador que apura IBS/CBS no regime regular, inclusive optante pelo Simples com esses tributos por fora, pode aproveitar crédito limitado ao IBS/CBS devido pela Dryfit no Simples. O comprador com IBS/CBS no DAS não tem esse aproveitamento. Exigem-se aquisição elegível, nota fiscal eletrônica idônea e as condições dos arts. 47–48 da LC 214/2025, especialmente art. 47, § 9º, I e II.</p>
+    <p><strong>Percentuais de crédito em 2027:</strong> no Anexo II, nas faixas abrangidas pela simulação, a CBS representa 13,85% do DAS e o IBS, 0,15% do DAS. Na faixa inicial, 4,5% × 13,85% = 0,62325% da venda em CBS; 4,5% × 0,15% = 0,00675% em IBS. Total: 0,63% da venda, ou R$ 6,30 em R$ 1.000. O cálculo acompanha a alíquota efetiva selecionada e não considera o DAS inteiro como crédito. Fundamento: LC 214/2025, Anexo XIX, tabela do Anexo II para 2027–2028. Valores ilustrativos; a apropriação utiliza os valores da operação fiscal.</p>
+    <p><strong>ICMS em Goiás — vendas:</strong> para os NCMs 0813.10.00, 0813.20.10/20, 0813.30.00 e 0801.11.00, as operações usuais de venda da produção própria analisadas não estão na lista vigente de substituição pelas operações posteriores por produto. RCTE/GO, Anexo VIII, art. 32 e Apêndice II. A antiga lista do Apêndice X vigorou até 30/06/2007 e não fundamenta o enquadramento atual. Cadeias especiais de franquia, marketing direto e operações com outros destinos seguem suas próprias regras.</p>
     <p><strong>ICMS em Goiás — DAS:</strong> a orientação oficial 20872 da Economia/GO informa que a isenção geral para hortifrutícolas não abrange as saídas próprias do optante pelo Simples. Os benefícios gerais não autorizam excluir ICMS do DAS da Dryfit. A análise mantém o componente estadual.</p>
     <p><strong>DIFAL-SN nas entradas:</strong> RCTE/GO, Anexo XX, art. 2º, IV: compras abrangidas pela norma são dispensadas quando a receita acumulada é de até 10% do sublimite aplicável, equivalentes a R$ 360 mil com sublimite de R$ 3,6 milhões. A faixa anualizada apresentada, de R$ 36 mil a R$ 240 mil, está dentro do limite. No início de atividade, aplica-se a regra proporcional do dispositivo. A dispensa não alcança automaticamente compras para uso, consumo ou ativo imobilizado.</p>
     <p><strong>Matéria-prima da fabricação:</strong> Anexo IX, art. 6º, CXXIV: aquisições interestaduais empregadas na fabricação de nova espécie de mercadoria têm isenção do diferencial, observadas as exclusões do próprio dispositivo. Quando houver DIFAL-SN devido nas operações abrangidas, os arts. 3º e 4º do Anexo XX autorizam o cálculo reduzido previsto na norma. O benefício das entradas não altera a composição do DAS das vendas.</p>
     <p><strong>Alíquotas estimadas:</strong> referência CBS de 11,3% estimada pelo TCU, com redução transitória de 0,1 ponto: CBS 11,2% + IBS 0,1%. Com redução de 60%: CBS 4,48% e IBS 0,04%. <a href="https://portal.tcu.gov.br/imprensa/noticias/tcu-calcula-aliquota-de-referencia-de-113-para-novo-tributo-sobre-consumo" target="_blank" rel="noopener noreferrer">Estimativa oficial do TCU</a>.</p>
     <p><strong>Base do comparativo:</strong> receita mensal usada como base ilustrativa dos débitos de IBS/CBS; o controle desconta o percentual estimado de créditos informado. No cenário atual de referência, o crédito é 0%. A apuração fiscal utiliza as bases e os créditos efetivamente comprovados.</p>
-    <p><strong>Tabelas 2027–2028:</strong> <a href="https://legis.senado.gov.br/norma/40180341/publicacao/40181079" target="_blank" rel="noopener noreferrer">Anexo I</a> e <a href="https://legis.senado.gov.br/norma/40180341/publicacao/40181111" target="_blank" rel="noopener noreferrer">Anexo II</a>. O comparativo adota receita mensal constante para demonstrar o recolhimento de cada atividade; a regra de início de atividade considera a receita proporcional acumulada.</p>
+    <p><strong>Tabela 2027–2028:</strong> <a href="https://legis.senado.gov.br/norma/40180341/publicacao/40181111" target="_blank" rel="noopener noreferrer">Anexo II · indústria</a>. O comparativo adota receita mensal constante para demonstrar o recolhimento da produção própria; a regra de início de atividade considera a receita proporcional acumulada.</p>
     <p><strong>Prazo IBS/CBS em 2027:</strong> para o primeiro semestre, a Receita informou opção até 30/10/2026 e cancelamento entre 03/11 e 20/12/2026. O planejamento apresentado mantém IBS/CBS no recolhimento do Simples tradicional. <a href="https://www.gov.br/receitafederal/pt-br/assuntos/noticias/2026/setembro/simples-nacional-2027-entenda-os-novos-prazos-e-faca-sua-escolha-com-consciencia-e-tranquilidade/" target="_blank" rel="noopener noreferrer">Receita Federal · prazos de 2027</a>. A apresentação não formaliza opção tributária.</p>
   </div>
 </dialog>
@@ -350,7 +348,7 @@
   <div class="product-conditions">
     <h3>Requisitos para a Redução de 60%:</h3>
     <ul>
-      <li>Sem adição de açúcar ou outros edulcorantes; NCM e composição compatíveis com o item 14 do Anexo VII.</li>
+      <li>Sem adição de açúcar ou outros edulcorantes; NCM e composição compatíveis com os produtos beneficiados.</li>
       <li>Respeitar as exclusões de nozes, castanhas e frutas não regionais; misturas exigem análise de todos os componentes.</li>
       <li>Benefício na apuração regular de IBS/CBS, após opção pelo modelo por fora. O DAS integral não muda.</li>
     </ul>

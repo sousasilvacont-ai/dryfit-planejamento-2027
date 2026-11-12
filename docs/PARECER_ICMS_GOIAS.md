@@ -4,7 +4,7 @@ Consulta: 12/11/2026. Empresa: Dryfit, CNPJ 67.073.133/0001-69, Anápolis/GO.
 
 ## Conclusão da consultoria
 
-O planejamento definido é o Simples tradicional para o cenário atual analisado. Fabricação própria nos CNAEs 10.31-7/00 e 10.32-5/99 é segregada no Anexo II; revenda nos CNAEs 47.29-6/99 e 47.24-5/00, no Anexo I. Alíquotas iniciais de 4,5% e 4%, respectivamente; a RBT12 determina a faixa efetiva.
+O planejamento definido é o Simples tradicional para a fabricação e a venda da produção própria da indústria. CNAEs industriais cadastrados: 10.31-7/00 e 10.32-5/99. Apuração no Anexo II, com alíquota inicial de 4,5%; a RBT12 determina a faixa efetiva. Conforme esclarecimento do cliente, revenda não integra a operação planejada. Se ocorrer, suas receitas devem ser separadas e apuradas no Anexo I; os CNAEs comerciais já cadastrados são 47.29-6/99 e 47.24-5/00.
 
 ## Goiás: resultado da pesquisa
 
@@ -21,6 +21,10 @@ Frutas secas e coco não integram a monofasia de combustíveis do art. 172 da LC
 
 Créditos no regime regular dependem da aquisição elegível, documento fiscal idôneo e liberação fiscal, observadas a extinção do débito e as exceções dos arts. 47–48. No Simples tradicional, a empresa não desconta créditos de entrada de IBS/CBS no DAS; nas vendas B2B, o adquirente regular pode aproveitar crédito limitado ao montante de IBS/CBS devido pelo fornecedor no Simples, conforme art. 47, § 9º, II.
 
+O direito é do adquirente que apura IBS/CBS no regime regular, inclusive optante do Simples que recolhe esses tributos por fora; adquirente com IBS/CBS no DAS não apropria esses créditos. Não é crédito sobre o DAS inteiro nem direito de qualquer comprador. A regra foi reconfirmada no texto oficial compilado em 12/11/2026, art. 47, § 9º, I e II.
+
+Para 2027–2028, o Anexo XIX da LC 214 estabelece no Anexo II a partilha de CBS de 13,85% e IBS de 0,15% do DAS nas faixas 1 e 2 abrangidas pelo simulador. Com alíquota efetiva de 4,5%, resultam CBS de 0,62325% e IBS de 0,00675% da venda, total de 0,63%. Exemplo ilustrativo: até R$ 6,30 de crédito em compra de R$ 1.000 por adquirente habilitado. Na faixa 2, a alíquota efetiva considera a dedução de R$ 5.940. O exemplo e os percentuais da apresentação acompanham a receita e a RBT12 selecionadas. A apropriação efetiva utiliza os valores fiscais da operação, respeitando as condições legais e os arredondamentos da apuração.
+
 ## Fontes primárias e alcance
 
 - [RCTE/GO — Anexo VIII](https://appasp.economia.go.gov.br/legislacao/arquivos/Rcte/anexos/ANEXO_08_Substituicao_Tributaria.htm): art. 32, Apêndice II vigente e Apêndice X histórico. Texto consolidado consultado integralmente; referências antigas identificadas por datas de vigência.
@@ -30,5 +34,6 @@ Créditos no regime regular dependem da aquisição elegível, documento fiscal 
 - [Economia/GO — orientação 20872](https://orientacaotributaria.economia.go.gov.br/spo-web/perguntasfrequentes/perguntafrequente/20872): aplicação dos benefícios gerais ao Simples.
 - [Economia/GO — orientação 21869](https://orientacaotributaria.economia.go.gov.br/spo-web/perguntasfrequentes/perguntafrequente/21869): isenção de matérias-primas da fabricação.
 - [LC 214/2025](https://legis.senado.gov.br/norma/40180341/publicacao/40181429), [Anexo VII](https://legis.senado.gov.br/norma/40180341/publicacao/40180967) e [Anexo XV](https://legis.senado.gov.br/norma/40180341/publicacao/40181038).
+- [LC 214/2025 — texto oficial compilado](https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp214.htm#art47): art. 47, § 9º, I e II, e Anexo XIX, tabela do Anexo II para 2027–2028. Reconfirmados em 12/11/2026: direito limitado do adquirente regular e partilha de CBS/IBS.
 
 Legislação: ICMS em vigor e reforma em transição, segundo a data da consulta. Entendimento administrativo: orientações expressas da Economia/GO. Não houve análise de litígio nem invocação de tese judicial. Segurança alta para as regras citadas; conclusões por produto limitadas aos NCMs e às operações descritas. CBS utilizada no gráfico é referência estimada de planejamento, identificada nas notas da apresentação.
