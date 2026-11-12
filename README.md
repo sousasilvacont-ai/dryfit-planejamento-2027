@@ -1,28 +1,27 @@
 # Planejamento Dryfit · Tributário 2027
 
-Apresentação interativa de planejamento tributário da Dryfit. O site é estático e está organizado na raiz para publicação direta com GitHub Pages.
+Apresentação interativa e estática de planejamento tributário da Dryfit. O ponto de entrada do site é `index.html`, compatível com publicação direta pelo GitHub Pages, sem build ou dependências de servidor.
 
-## Arquivos do site
+## Estrutura publicada
 
-- `index.html` — redireciona à apresentação principal.
-- `PAINEL_TRIBUTARIO_CNPJ_67073133000169.html` — apresentação e estrutura dos slides.
+O repositório mantém os ativos estáticos na raiz (a alternativa mais segura para preservar os arquivos originais e a compatibilidade com Pages):
+
+- `index.html` — ponto de entrada e carregador estático da apresentação.
+- `PAINEL_TRIBUTARIO_CNPJ_67073133000169.html` — conteúdo principal dos slides.
 - `painel_tributario.css` e `client_final.css` — estilos.
-- `painel_tributario.js` e `client_final.js` — cálculos e interações.
-- `meeting_chart_3d.js` — aprimoramento WebGL com gráfico HTML alternativo.
-- `three.global.js` — biblioteca Three.js atualmente na raiz.
-- `Manrope-Variable.ttf` e `Manrope-OFL.txt` — fonte e licença, atualmente na raiz.
-- `painel_tributario.test.cjs` — testes dos cálculos (executar com `node painel_tributario.test.cjs`).
+- `painel_tributario.js`, `meeting_chart_3d.js` e `client_final.js` — interações e gráfico.
+- `three.global.js` — biblioteca Three.js.
+- `Manrope-Variable.ttf` e `Manrope-OFL.txt` — fonte e licença.
 - `THREE-LICENSE.txt` — licença da biblioteca Three.js.
-- `MANIFESTO_PUBLICACAO_DRYFIT_2026-11-12.json` — manifesto de arquivos enviado.
+- `painel_tributario.test.cjs` — testes da simulação (executar com `node painel_tributario.test.cjs`).
+- `MANIFESTO_PUBLICACAO_DRYFIT_2026-11-12.json` — manifesto de publicação.
 
-## Ativar a publicação
+O `index.html` corrige os caminhos legados para Three.js e declara a fonte com o caminho da raiz. A página continua usando HTML, CSS e JavaScript estáticos; não usa caminhos absolutos que quebrem em uma publicação de projeto no GitHub Pages.
 
-O repositório ainda precisa ter o GitHub Pages habilitado. No GitHub, abra **Settings → Pages** e, em **Build and deployment**, selecione **Deploy from a branch**, branch **main**, pasta **/(root)** e clique em **Save**. Aguarde o deploy ficar concluído; o painel mostrará a URL pública.
+## GitHub Pages
+
+Configure em **Settings → Pages → Build and deployment** a opção **Deploy from a branch**, branch `main`, pasta `/(root)`.
 
 URL esperada: https://sousasilvacont-ai.github.io/dryfit-planejamento-2027/
 
-## Nota de compatibilidade dos ativos
-
-Os arquivos enviados estão na raiz, mas o HTML/CSS original referencia Three.js em `vendor/three.global.js` e a fonte em `vendor/fonts/Manrope-Variable.ttf`. Até esses caminhos serem alinhados, o gráfico HTML de reserva continua disponível quando o script WebGL não inicializa, mas a fonte Manrope pode não carregar. Para organização definitiva, mova a biblioteca para `vendor/three.global.js` e a fonte para `vendor/fonts/Manrope-Variable.ttf`, ou ajuste as referências na página/folha de estilos.
-
-A simulação é ilustrativa; valide dados, enquadramento e legislação antes de uso como apuração fiscal.
+A simulação é ilustrativa; valide dados, enquadramento e legislação antes de usá-la como apuração fiscal.
