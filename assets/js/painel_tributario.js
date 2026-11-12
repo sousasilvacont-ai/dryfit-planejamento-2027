@@ -265,17 +265,17 @@
     text('planProduction', money.format(calculate(month, month * 12, 'II').das));
 
     const gap = r.differenceFromFullDas;
-    text('monthlyGap', 'Diferença: ' + (gap > 0 ? '+' : '') + money.format(gap) + ' / mês');
+    text('monthlyGap', 'Variação do desembolso: ' + (gap > 0 ? '+' : '') + money.format(gap) + ' / mês');
 
     text('decisionTitle', 'Comparativo de Desembolso para a Dryfit');
     text('decisionText',
       currentAnnex === 'I'
-        ? 'Revenda (Anexo I): DAS de ' + money.format(r.fullDas) + ' (' + percent.format(r.effectiveRate) + ') vs. ' + money.format(r.hybrid) + ' por fora.'
-        : 'Produção Própria (Anexo II · CNAE 1031-7/00): DAS de ' + money.format(r.fullDas) + ' (' + percent.format(r.effectiveRate) + ') vs. ' + money.format(r.hybrid) + ' por fora.'
+        ? 'Revenda (Anexo I): DAS de ' + money.format(r.fullDas) + ' (' + percent.format(r.effectiveRate) + ') e IBS/CBS de ' + money.format(r.hybrid) + ' por fora.'
+        : 'Produção Própria (Anexo II · CNAE 1031-7/00): DAS de ' + money.format(r.fullDas) + ' (' + percent.format(r.effectiveRate) + ') e IBS/CBS de ' + money.format(r.hybrid) + ' por fora.'
     );
 
     text('scenarioLabel', (currentAnnex === 'I' ? 'Revenda · Anexo I' : 'Produção · Anexo II') + ' · Créditos estimados: ' + r.creditPercent + '% · benefício só por fora');
-    text('statusText', 'Simples integral: ' + money.format(r.fullDas) + '. Regime regular após crédito estimado: ' + money.format(r.hybrid) + '. Crédito: ' + money.format(r.credits) + '. ' + selectedProduct + '.');
+    text('statusText', 'Simples tradicional: ' + money.format(r.fullDas) + '. Regime regular após crédito estimado: ' + money.format(r.hybrid) + '. Crédito: ' + money.format(r.credits) + '. ' + selectedProduct + '.');
 
     const max = Math.max(r.fullDas, r.hybrid, 0.01);
     bar(ui.fullBar, r.fullDas, max);
@@ -362,12 +362,12 @@
 
   const slideIds = ['empresa','atuacao','tributacao','alternativas','oportunidades','legislacao','tributos'];
   const slideNames = [
-    '1. Empresa & CNAEs',
-    '2. Estratégia para 2027',
+    '1. Empresa',
+    '2. Planejamento 2027',
     '3. Comparativo 3D',
     '4. Impacto no Caixa',
-    '5. Oportunidades',
-    '6. Legislação & Normas',
+    '5. Oportunidades da reforma',
+    '6. Fundamentos do planejamento',
     '7. Composição dos Tributos'
   ];
   let slideIndex = 0;

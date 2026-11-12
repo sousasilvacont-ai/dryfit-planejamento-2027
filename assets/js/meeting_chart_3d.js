@@ -168,7 +168,7 @@
     const stage = document.createElement("div");
     stage.className = "meeting-3d-stage";
     stage.setAttribute("role", "group");
-    stage.setAttribute("aria-label", "Gráfico tridimensional: comparação neutra entre Simples integral e IBS/CBS por fora");
+    stage.setAttribute("aria-label", "Gráfico tridimensional: comparação neutra entre Simples tradicional e IBS/CBS por fora");
     stage.style.cssText = "position:relative;width:100%;height:auto;min-height:0;flex:1 1 0;isolation:isolate;";
 
     const canvas = document.createElement("canvas");
@@ -224,7 +224,7 @@
       breakdownGrid.append(card);
     }
 
-    addBreakdownCard("Simples integral", [
+    addBreakdownCard("Simples tradicional", [
       { key: "full", label: "DAS integral", color: "#24a6cf" },
     ]);
     addBreakdownCard("IBS/CBS por fora", [
@@ -236,7 +236,7 @@
 
     const labels = {};
     const scenarios = [
-      { key: "full", group: "integral", title: "Simples integral", color: "#24a6cf", x: -2.6 },
+      { key: "full", group: "integral", title: "Simples tradicional", color: "#24a6cf", x: -2.6 },
       { key: "hybrid", group: "hybrid", title: "IBS/CBS por fora", color: "#dfbb69", x: 2.6 },
     ];
 
