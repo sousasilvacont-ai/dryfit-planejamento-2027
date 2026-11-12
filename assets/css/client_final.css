@@ -135,6 +135,21 @@
   .regime-grid { margin-top:16px; }
 }
 .presentation-slide:not([hidden]) { animation:none; }
+.fullscreen-control { position:relative; flex:none; }
+.fullscreen-button { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-width:112px; min-height:44px; padding:8px 12px; border:1px solid #8c794f; border-radius:5px; color:#f0d394; background:#0b203a; font:inherit; font-size:.8rem; font-weight:700; cursor:pointer; white-space:nowrap; }
+.fullscreen-button:hover { background:#17344f; border-color:#e4c682; }
+.fullscreen-button:focus-visible { outline:2px solid #f0d394; outline-offset:3px; }
+.fullscreen-button:disabled { opacity:.65; cursor:wait; }
+.fullscreen-message { position:absolute; top:calc(100% + 8px); right:0; z-index:20; width:260px; padding:12px; border:1px solid #8c794f; border-radius:5px; background:#0b203a; color:#f3f6fc; font-size:.8rem; line-height:1.5; }
+@media(min-width:980px) { .masthead .section-nav { flex:1; min-width:0; } }
+@media(max-width:1200px) { .fullscreen-button { min-width:44px; width:44px; padding:10px; } .fullscreen-button span { display:none; } }
+@media(max-width:979px) {
+  .masthead { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:8px 12px; }
+  .masthead .brand-name { min-width:0; }
+  .fullscreen-control { grid-column:2; grid-row:1; }
+  .masthead .section-nav { grid-column:1/-1; min-width:0; }
+}
+@media print { .fullscreen-control { display:none!important; } }
 .product-benefit-fixed { margin-top:8px; padding:10px 12px; border:1px solid #b8c8d7; border-left:3px solid #b18b43; border-radius:4px; background:#edf3f7; color:#102b43; }
 .product-benefit-fixed strong { display:block; font-size:1rem; font-weight:800; }
 .product-benefit-fixed span { display:block; margin-top:2px; font-size:.72rem; color:#465d75; }
