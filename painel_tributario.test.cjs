@@ -1,7 +1,7 @@
 const assert = require('node:assert/strict');
 const { readFileSync } = require('node:fs');
 require('./assets/js/painel_tributario.js');
-const { calculate, compare } = globalThis.Tributario2027;
+const { calculate, compare, buyerCredit } = globalThis.Tributario2027;
 const html = readFileSync('index.html', 'utf8');
 const presenter = readFileSync('assets/js/painel_tributario.js', 'utf8');
 
@@ -77,6 +77,20 @@ for (const [annex, month, das, residual] of cases) {
   }
 }
 assert.equal(creditMatrixCount, 1818);
+// Crédito B2B da indústria: parcela de CBS/IBS do DAS, por faixa de 2027.
+for (const [monthly, annual, cbs, ibs, total, example] of [
+  [3000, 36000, 0.0062325, 0.0000675, 0.0063, 6.30],
+  [15000, 180000, 0.0062325, 0.0000675, 0.0063, 6.30],
+  [20000, 240000, 0.007375125, 0.000079875, 0.007455, 7.46],
+  [20000, 360000, 0.00851775, 0.00009225, 0.00861, 8.61],
+]) {
+  const r = buyerCredit(monthly, annual);
+  for (const [actual, expected] of [[r.cbsRate, cbs], [r.ibsRate, ibs], [r.totalRate, total]]) {
+    assert.ok(Math.abs(actual - expected) < 1e-12);
+  }
+  assert.equal(r.exampleAmount, example);
+  assert.ok(r.totalRate < calculate(monthly, annual, 'II').effectiveRate);
+}
 assert.throws(() => calculate(3000, 360001, 'I'), RangeError);
 assert.throws(() => calculate(-1, 36000, 'II'), RangeError);
-console.log('18 cenários base, 3 percentuais explícitos e 1.818 combinações de crédito conferidos; valores e totais conciliados.');
+console.log('18 cenários base, 3 percentuais explícitos, 1.818 combinações de crédito e 4 cenários de crédito B2B conferidos; valores e totais conciliados.');

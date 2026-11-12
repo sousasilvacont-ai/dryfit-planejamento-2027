@@ -64,10 +64,13 @@
   .company-cnae { padding:24px 28px; }
   .company-cnae h2 { font-size:1.3rem; }
   .benefit-scope { color:#435570; font-size:.75rem; line-height:1.5; margin-top:8px; }
-  .plan-forecast { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; margin-top:32px; border-top:1px solid #45617e; padding-top:22px; }
+  .plan-forecast { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; margin-top:32px; border-top:1px solid #45617e; padding-top:22px; }
   .plan-forecast span { display:block; color:#c1d2e4; font-size:.8rem; }
   .plan-forecast strong { display:block; color:#f0d394; font-size:clamp(1.4rem,2vw,2rem); margin-top:6px; font-weight:800; font-variant-numeric:tabular-nums; }
   #atuacao .plan-note { color:#c0d2e5; font-size:.78rem; margin-top:13px; line-height:1.5; }
+  #atuacao .operation-footnote { color:#c0d2e5; margin-top:13px; line-height:1.5; }
+  #atuacao .operation-footnote small { font-size:.75rem; }
+  .buyer-credit-rates strong { color:var(--navy); }
   #oportunidades>.source-button { margin-top:14px; }
   #legalDialog .history { color:#14263d; background:#edf2f8; padding:16px; margin-bottom:20px; border:1px solid #c1ccdb; }
   #legalDialog .control-value { font-size:1.5rem; }

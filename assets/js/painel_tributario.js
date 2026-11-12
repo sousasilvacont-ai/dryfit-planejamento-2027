@@ -134,13 +134,25 @@
     });
   }
 
-  globalThis.Tributario2027 = Object.freeze({ calculate, compare, bands });
+  // Partilha do Anexo II para 2027–2028, faixas 1 e 2 desta simulação.
+  const industryCbsShare = 0.1385, industryIbsShare = 0.0015;
+  function buyerCredit(monthlyRevenue, rbt12) {
+    const r = calculate(monthlyRevenue, rbt12, 'II');
+    const cbsRate = r.effectiveRate * industryCbsShare;
+    const ibsRate = r.effectiveRate * industryIbsShare;
+    return Object.freeze({
+      cbsRate, ibsRate, totalRate: cbsRate + ibsRate,
+      exampleAmount: roundMoney(roundMoney(1000 * cbsRate) + roundMoney(1000 * ibsRate)),
+    });
+  }
+
+  globalThis.Tributario2027 = Object.freeze({ calculate, compare, buyerCredit, bands });
 
   if (typeof document === "undefined") return;
   const $ = id => document.getElementById(id);
   const ids = [
     'monthly','rbt','stable','custom','rbtWrap','reset',
-    'activityAnnex1','activityAnnex2','annexContext',
+    'annexContext',
     'standardProduct','foodProduct','zeroProduct',
     'monthValue','rbtValue','fullTotal','fullRate','hybridTotal','hybridRate',
     'productCredit','productCreditValue','productCreditAmount',
@@ -155,7 +167,9 @@
 
   const money = new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'});
   const percent = new Intl.NumberFormat('pt-BR',{style:'percent',minimumFractionDigits:2,maximumFractionDigits:2});
-  let custom = false, customInitialized = false, benefit = 'reduced', selectedProduct = 'Frutas secas sem adição de açúcar', currentAnnex = 'II';
+  const creditPercentFormat = new Intl.NumberFormat('pt-BR',{style:'percent',minimumFractionDigits:2,maximumFractionDigits:7});
+  const currentAnnex = 'II';
+  let custom = false, customInitialized = false, benefit = 'reduced', selectedProduct = 'Frutas secas sem adição de açúcar';
 
   const options = () => ({
     annex: currentAnnex,
@@ -171,22 +185,6 @@
     ui.rbtWrap.hidden = !custom;
     ui.stable.setAttribute('aria-pressed',String(!custom));
     ui.custom.setAttribute('aria-pressed',String(custom));
-  }
-
-  function setActivity(annex){
-    currentAnnex = annex;
-    ui.activityAnnex1.setAttribute('aria-pressed', String(annex === 'I'));
-    ui.activityAnnex2.setAttribute('aria-pressed', String(annex === 'II'));
-    text('annexContext', annex === 'I' ? 'Revenda · Anexo I' : 'Produção própria · Anexo II');
-    const hint = $('activityHint');
-    if (hint) {
-      if (annex === 'I') {
-        hint.innerHTML = '<strong>Revenda Varejista (Anexo I):</strong> Alíquota inicial de <strong>4,00%</strong> (R$ 120 / R$ 3 mil). Atividades de comércio já cadastradas no CNPJ.';
-      } else {
-        hint.innerHTML = '<strong>Produção Própria (Anexo II):</strong> Alíquota inicial de <strong>4,50%</strong> (R$ 135 / R$ 3 mil). Coberta pelo <strong>CNAE 1031-7/00</strong> cadastrado na Receita.';
-      }
-    }
-    update();
   }
 
   function setBenefit(value,product){
@@ -258,23 +256,23 @@
     text('reductionValue', benefit === 'zero' ? 'Alíquota Zero (0%)' : benefit === 'reduced' ? 'Redução de 60%' : 'Regra Geral');
     text('benefitProductHint', selectedProduct);
     text('taxTableMonthRef', money.format(month));
-    text('taxTableActivityRef', currentAnnex === 'I' ? 'Revenda · Anexo I' : 'Produção · Anexo II');
-    text('comparisonScenario', (currentAnnex === 'I' ? 'Revenda · Anexo I' : 'Produção · Anexo II') + ' · ' + (benefit === 'zero' ? 'Alíquota zero por fora' : benefit === 'reduced' ? 'Redução de 60% por fora' : 'Regra geral por fora'));
+    text('taxTableActivityRef', 'Produção · Anexo II');
+    text('comparisonScenario', 'Produção · Anexo II · ' + (benefit === 'zero' ? 'Alíquota zero por fora' : benefit === 'reduced' ? 'Redução de 60% por fora' : 'Regra geral por fora'));
     text('planRevenue', money.format(month));
-    text('planRetail', money.format(calculate(month, month * 12, 'I').das));
-    text('planProduction', money.format(calculate(month, month * 12, 'II').das));
+    text('planProduction', money.format(r.fullDas));
+    const buyer = buyerCredit(month, annual);
+    text('buyerCbsRate', creditPercentFormat.format(buyer.cbsRate));
+    text('buyerIbsRate', creditPercentFormat.format(buyer.ibsRate));
+    text('buyerTotalRate', creditPercentFormat.format(buyer.totalRate));
+    text('buyerCreditExample', money.format(buyer.exampleAmount));
 
     const gap = r.differenceFromFullDas;
     text('monthlyGap', 'Diferença no pagamento: ' + (gap > 0 ? '+' : '') + money.format(gap) + ' / mês');
 
     text('decisionTitle', 'Comparativo de Desembolso para a Dryfit');
-    text('decisionText',
-      currentAnnex === 'I'
-        ? 'Revenda (Anexo I): DAS de ' + money.format(r.fullDas) + ' (' + percent.format(r.effectiveRate) + ') e IBS/CBS de ' + money.format(r.hybrid) + ' por fora.'
-        : 'Produção Própria (Anexo II · CNAE 1031-7/00): DAS de ' + money.format(r.fullDas) + ' (' + percent.format(r.effectiveRate) + ') e IBS/CBS de ' + money.format(r.hybrid) + ' por fora.'
-    );
+    text('decisionText', 'Produção própria (Anexo II): DAS de ' + money.format(r.fullDas) + ' (' + percent.format(r.effectiveRate) + ') e total de ' + money.format(r.hybrid) + ' no modelo com IBS/CBS por fora.');
 
-    text('scenarioLabel', (currentAnnex === 'I' ? 'Revenda · Anexo I' : 'Produção · Anexo II') + ' · Créditos estimados: ' + r.creditPercent + '% · benefício só por fora');
+    text('scenarioLabel', 'Produção · Anexo II · Créditos estimados: ' + r.creditPercent + '% · benefício só por fora');
     text('statusText', 'Simples tradicional: ' + money.format(r.fullDas) + '. Regime regular após crédito estimado: ' + money.format(r.hybrid) + '. Crédito: ' + money.format(r.credits) + '. ' + selectedProduct + '.');
 
     const max = Math.max(r.fullDas, r.hybrid, 0.01);
@@ -321,9 +319,6 @@
     update();
   });
 
-  ui.activityAnnex1.addEventListener('click', () => setActivity('I'));
-  ui.activityAnnex2.addEventListener('click', () => setActivity('II'));
-
   ui.standardProduct.addEventListener('click', () => setBenefit('standard'));
   ui.foodProduct.addEventListener('click', () => setBenefit('reduced'));
   ui.zeroProduct.addEventListener('click', () => setBenefit('zero'));
@@ -334,7 +329,6 @@
     ui.productCredit.value = '0';
     customInitialized = false;
     setBase(false);
-    setActivity('II');
     setBenefit('reduced');
     ui.monthly.focus();
   });
@@ -436,7 +430,7 @@
     const isAnnexI = (r.annex === 'I');
     const shares = isAnnexI
       ? [0.055, 0.035, 0.1533, 0.4150, 0.0000, 0.3400, 0.0017]
-      : [0.055, 0.035, 0.1385, 0.3750, 0.0750, 0.3200, 0.0015];
+      : [0.055, 0.035, industryCbsShare, 0.3750, 0.0750, 0.3200, industryIbsShare];
     const names = ['IRPJ', 'CSLL', 'CBS', 'Previdência Patronal (CPP)', 'IPI', 'ICMS', 'IBS'];
     const values = apportioned(r.fullDas, shares);
 
@@ -488,6 +482,5 @@
   });
 
   setBase(false);
-  setActivity('II');
   setBenefit('reduced');
 })();
