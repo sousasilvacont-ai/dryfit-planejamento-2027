@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#081a34">
+<title>Planejamento Tributário 2027 · Apresentação Executiva Dryfit</title>
+<link rel="stylesheet" href="painel_tributario.css">
+<link rel="stylesheet" href="client_final.css">
+<script src="vendor/three.global.js" defer></script><script src="painel_tributario.js" defer></script><script src="meeting_chart_3d.js" defer></script><script src="client_final.js" defer></script>
+</head>
+<body data-slide="empresa">
+
+<header class="masthead">
+  <a class="brand" href="#empresa">
+    <span class="brand-badge">ESTRATÉGIA FISCAL</span>
+    <span class="brand-name">PLANEJAMENTO TRIBUTÁRIO 2027</span>
+  </a>
+  <nav class="section-nav" aria-label="Navegação da apresentação">
+    <a href="#empresa" aria-current="page">1. Empresa & CNAEs</a>
+    <a href="#tributacao">2. Comparativo</a>
+    <a href="#tributos">3. Composição</a>
+    <a href="#alternativas">4. Impacto no Caixa</a>
+    <a href="#oportunidades">5. Oportunidades</a>
+    <a href="#atuacao">6. Planejamento</a>
+    <a href="#legislacao">7. Legislação</a>
+  </nav>
+</header>
+
+<main class="page-width">
+
+  <!-- SLIDE 1: EMPRESA E CNAES -->
+  <section id="empresa" class="presentation-slide company-slide" data-slide><div class="company-identity"><h1 class="companywordmark">Dryfit<span>.</span></h1><p class="company-description">Fabricação e revenda de alimentos.</p><div class="company-data"><div><span>CNPJ</span><strong>67.073.133/0001-69</strong></div><div><span>Localização</span><strong>Anápolis · GO</strong></div></div><div class="company-annexes"><div><strong>Anexo II</strong><span>Produção própria</span></div><div><strong>Anexo I</strong><span>Revenda</span></div></div></div><div class="company-cnae"><h2>Atividades cadastradas</h2><div class="registered-cnae"><span>PRINCIPAL</span><strong>10.31-7/00</strong><p>Fabricação de conservas de frutas</p><small>Inclui frutas secas e desidratadas.</small></div><div class="registered-cnae"><span>SECUNDÁRIO</span><strong>47.29-6/99</strong><p>Varejo de produtos alimentícios em geral ou especializados</p></div><div class="registered-cnae"><span>SECUNDÁRIO</span><strong>47.24-5/00</strong><p>Varejo de hortifrutigranjeiros</p></div><div class="registered-cnae"><span>SECUNDÁRIO</span><strong>10.32-5/99</strong><p>Conservas de legumes e outros vegetais, exceto palmito</p></div><p class="cnae-note">CNAEs cadastrados adequados às atividades apresentadas. Fabricação e revenda serão segregadas na apuração.</p></div></section>
+
+  <!-- SLIDE 2: COMPARATIVO DE RECOLHIMENTO -->
+  <div class="page-title" hidden>
+    <h1>Comparativo de Desembolso Tributário</h1>
+    <p>Simulação executiva de recolhimento · Cenários para 2027 · Anápolis / GO</p>
+    <div class="company-meta">
+      <span>CNPJ 67.073.133/0001-69</span>
+      <span id="annexContext">Produção própria · Anexo II</span>
+      <span>Revenda Varejo: Anexo I (4,00%)</span>
+    </div>
+  </div>
+
+  <section id="tributacao" data-slide class="presentation-slide decision-stage" aria-label="Comparativo executivo de tributos" hidden>
+    <aside class="controls">
+      <div class="field">
+        <label for="monthly">Receita mensal de referência</label>
+        <output class="control-value" id="monthValue" for="monthly">R$ 3.000,00</output>
+        <input id="monthly" type="range" min="3000" max="20000" step="500" value="3000">
+        <div class="range-labels"><span>R$ 3 mil</span><span>R$ 15 mil</span><span>R$ 20 mil</span></div>
+      </div>
+
+      <div class="field activity-choice">
+        <span class="field-label">Origem da mercadoria vendida</span>
+        <div class="segmented" role="group" aria-label="Enquadramento da mercadoria">
+          <button type="button" id="activityAnnex2" aria-pressed="true">Produção própria · II</button>
+          <button type="button" id="activityAnnex1" aria-pressed="false">Revenda · I</button>
+        </div>
+        <p class="hint" id="activityHint">Produção própria no CNAE 1031-7/00 (4,5%). Revenda com CNAEs de comércio · Anexo I.</p>
+      </div>
+
+      <div class="field product-choice">
+        <span class="field-label">Frutas secas elegíveis</span>
+        <div class="product-benefit-fixed"><strong>Redução de 60%</strong><span>Aplicada ao IBS/CBS por fora</span></div>
+        <div class="segmented" role="group" aria-label="Tratamento fiscal dos produtos na reforma tributária" hidden>
+          <button type="button" id="standardProduct" aria-pressed="false">Geral (11,3%)</button>
+          <button type="button" id="foodProduct" aria-pressed="true">Redução 60%</button>
+          <button type="button" id="zeroProduct" aria-pressed="false">Alíquota zero</button>
+        </div>
+        <p class="benefit-scope">A redução altera apenas o híbrido. O DAS integral permanece igual.</p>
+      </div>
+
+      <button type="button" id="productsToggle" class="products-button" aria-haspopup="dialog">Consultar catálogo e NCMs</button>
+
+      <details class="history">
+        <summary>Ajustar base acumulada (RBT12)</summary>
+        <div class="segmented" role="group" aria-label="Base da receita acumulada">
+          <button type="button" id="stable" aria-pressed="true">Receita constante</button>
+          <button type="button" id="custom" aria-pressed="false">Informar RBT12</button>
+        </div>
+        <div id="rbtWrap" class="field" hidden>
+          <label for="rbt">Receita acumulada em 12 meses</label>
+          <output class="control-value" id="rbtValue" for="rbt">R$ 36.000,00</output>
+          <input id="rbt" type="range" min="1000" max="360000" step="1000" value="36000">
+        </div>
+      </details>
+
+      <button type="button" id="reset" class="reset-button">Restaurar valores padrão</button>
+      <div id="inputError" role="alert" hidden></div>
+    </aside>
+
+    <div class="comparison-stage">
+      <div class="comparison-heading">
+        <h2>Simples Integral vs. IBS/CBS por Fora</h2>
+      </div>
+
+      <!-- Comparação com composição do recolhimento por fora. -->
+      <figure class="chart3d" aria-label="Comparação visual dos totais mensais"><div class="columns"><div class="column-group integral"><div class="column-label"><h3>Simples integral</h3></div><div class="bar-space"><div class="tax-column" id="fullBar" style="--bar-height:139.45"><div class="column-total"><strong id="fullTotal">R$ 135,00</strong><span>/ mês</span><span class="column-rate" id="fullRate">4,50%</span></div></div></div><p class="chart-legend">DAS <strong id="fullDASshare">R$ 135,00</strong></p></div><div class="column-group external"><div class="column-label"><h3>IBS/CBS por fora</h3></div><div class="bar-space"><div class="tax-column" id="hybridBar" style="--bar-height:260"><div class="column-total"><strong id="hybridTotal">R$ 251,70</strong><span>/ mês</span><span class="column-rate" id="hybridRate">8,39%</span></div></div></div><p class="chart-legend"><span>DAS remanescente <strong id="hybridBase">R$ 116,10</strong></span><span>IBS/CBS bruto <strong id="hybridRegular">R$ 135,60</strong></span></p></div></div><div class="chart-floor" aria-hidden="true"></div><figcaption class="estimate-note" id="scenarioLabel">Estimativa · valores brutos sem créditos</figcaption></figure>
+
+      <div class="decision-message">
+        <h3 id="decisionTitle">Impacto direto no caixa</h3>
+        <p id="decisionText">Comparação de recolhimento sob os mesmos parâmetros de receita.</p>
+        <strong id="monthlyGap">Diferença: +R$ 116,70 / mês</strong>
+      </div>
+
+      <div class="tax-detail">
+        <div>
+          <span>CBS por fora</span>
+          <strong id="cbsApplied">4,48%</strong>
+          <small id="cbsAmount">R$ 134,40 / mês</small>
+        </div>
+        <div>
+          <span>IBS por fora</span>
+          <strong id="ibsApplied">0,04%</strong>
+          <small id="ibsAmount">R$ 1,20 / mês</small>
+        </div>
+        <div>
+          <span>Produto no híbrido</span>
+          <strong id="reductionValue">Redução de 60%</strong>
+          <small id="benefitProductHint">Frutas secas sem adição de açúcar</small>
+        </div>
+      </div>
+      <p class="estimate-note">Estimativa 2027 · CBS 11,2% + IBS 0,1% antes do benefício · débitos brutos, sem créditos.</p>
+    </div>
+  </section>
+
+  <p id="statusText" class="sr-only" role="status" aria-live="polite"></p>
+
+  <!-- SLIDE 3: ONDE ENTRA CADA TRIBUTO -->
+  <section id="tributos" class="presentation-slide section-block" data-slide hidden>
+    <div class="section-heading">
+      <h2>Composição dos Tributos</h2>
+      <p><span id="taxTableActivityRef">Produção · Anexo II</span> · receita <span id="taxTableMonthRef">R$ 3.000,00</span>.</p>
+    </div>
+    <div class="table-scroll">
+      <table class="tax-table">
+        <thead>
+          <tr>
+            <th scope="col">Tributo</th>
+            <th scope="col">Simples Integral<br>Alíquota Efetiva</th>
+            <th scope="col">Valor no DAS</th>
+            <th scope="col">IBS/CBS por Fora<br>Alíquota Efetiva</th>
+            <th scope="col">Valor Recolhido</th>
+            <th scope="col">Forma de Recolhimento</th>
+          </tr>
+        </thead>
+        <tbody id="taxRows"></tbody>
+        <tfoot>
+          <tr>
+            <th>Total Mensal</th>
+            <td id="taxFullRate"></td>
+            <td id="taxFullAmount"></td>
+            <td id="taxHybridRate"></td>
+            <td id="taxHybridAmount"></td>
+            <td>Guia única vs. Duas apurações</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div class="tax-explanation">
+      <p><strong>Integral:</strong> tributos da atividade reunidos no DAS. IPI apenas na produção própria.</p>
+      <p><strong>Híbrido:</strong> tributos remanescentes no DAS; IBS/CBS separados, com o tratamento do produto.</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 4: IMPACTO NO CAIXA -->
+  <section id="alternativas" data-slide class="presentation-slide section-block" hidden>
+    <div class="section-heading">
+      <h2>Impacto no Fluxo de Caixa</h2>
+      <p><span id="comparisonScenario">Produção · Anexo II · Redução de 60%</span><br>Valores brutos, sem créditos.</p>
+    </div>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Tabela de faturamento e desembolso">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th scope="col">Receita Mensal</th>
+            <th scope="col">Simples Integral</th>
+            <th scope="col">IBS/CBS por Fora</th>
+            <th scope="col">Diferença Mensal</th>
+            <th scope="col">Alíquota Efetiva Integral</th>
+            <th scope="col">Alíquota Efetiva por Fora</th>
+          </tr>
+        </thead>
+        <tbody id="comparisonRows"></tbody>
+      </table>
+    </div>
+    <div class="regime-grid">
+      <article>
+        <h3>B2C · consumidor final</h3>
+        <p>Planejamento no Simples integral. Preço final e margem por produto; os tributos permanecem no DAS.</p>
+      </article>
+      <article>
+        <h3>B2B · venda a empresas</h3>
+        <p>O DAS segue a atividade, como no B2C. Cliente no regime regular recebe crédito de IBS/CBS limitado ao devido no Simples.</p>
+      </article>
+      <article>
+        <h3>Alternativa · modelo híbrido</h3>
+        <p>IBS/CBS por fora, mediante opção formal. Reavaliar preço, margem e exigências dos clientes B2B antes da mudança.</p>
+      </article>
+    </div>
+    <div class="period-note">
+      <strong>Referências da análise</strong>
+      <p>Dezembro/2026: 4% informado. Em 2027: revenda começa em 4% e produção em 4,5%. <strong>Presumido e Real: migração não indicada no planejamento atual.</strong> Reavaliar com crescimento, margens, folha e custos.</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 5: OPORTUNIDADES -->
+  <section id="oportunidades" data-slide class="presentation-slide section-block" hidden>
+    <div class="section-heading">
+      <h2>Produtos e tratamento tributário</h2>
+      <p>Redução e alíquota zero por produto: aplicação exclusiva ao IBS/CBS por fora nesta comparação.</p>
+    </div>
+    <div class="opportunity-list">
+      <article>
+        <div>
+          <h3>Simples integral · caminho para 2027</h3>
+          <span class="status">Dentro do DAS</span>
+        </div>
+        <p>O benefício de IBS/CBS do produto <strong>não reduz o DAS integral</strong>. Aplicam-se os Anexos I e II às receitas segregadas.</p>
+      </article>
+
+      <article>
+        <div>
+          <h3>Maçã, damasco e ameixa secos</h3>
+          <span class="status">Híbrido · redução de 60%</span>
+        </div>
+        <p>NCM 0813.30.00, 0813.10.00 e 0813.20.10/20. Sem adição de açúcar ou outros edulcorantes: <strong>CBS estimada 4,48% + IBS 0,04%</strong>.</p>
+      </article>
+
+      <article>
+        <div>
+          <h3>Alíquota Zero no Coco Dessecado</h3>
+          <span class="status">Híbrido · alíquota zero</span>
+        </div>
+        <p>NCM 0801.11.00: <strong>CBS 0% + IBS 0%</strong>, pela previsão específica do Anexo XV. O DAS remanescente continua devido.</p>
+      </article>
+
+      <article>
+        <div>
+          <h3>Aplicação nas vendas B2B e B2C</h3>
+          <span class="status">Mesmo enquadramento do produto</span>
+        </div>
+        <p>O canal de venda não muda a redução por produto. No híbrido, o enquadramento depende do NCM, da composição e da opção pelo regime regular.</p>
+      </article>
+
+    </div>
+    <button type="button" class="source-button" data-open-products>Ver produtos, NCMs e condições</button>
+  </section>
+
+  <!-- SLIDE 6: PLANO DE AÇÃO -->
+  <section id="atuacao" data-slide class="presentation-slide section-block" hidden>
+    <div class="section-heading">
+      <h2>Como vamos trabalhar em 2027</h2>
+      <p>Simples integral · B2B e B2C.</p>
+    </div>
+    <div class="work-plan">
+      <article>
+        <span class="step-num">ETAPA 1</span>
+        <h3>Organizar produtos e receitas</h3>
+        <p>Cadastrar produtos com descrição, <strong>NCM e origem</strong>. Separar fabricação própria (<strong>Anexo II</strong>) e comércio (<strong>Anexo I</strong>), quando houver revenda.</p>
+      </article>
+
+      <article>
+        <span class="step-num">ETAPA 2</span>
+        <h3>Continuar no Simples integral</h3>
+        <p>Em 2027, manter o Simples integral, <strong>mais vantajoso nos cenários apresentados</strong>. Os benefícios de IBS/CBS por produto analisados aqui não reduzem o DAS integral.</p>
+      </article>
+
+      <article>
+        <span class="step-num">ETAPA 3</span>
+        <h3>Executar e acompanhar</h3>
+        <p><strong>Emitir notas fiscais</strong>, cadastrar novos produtos, conferir receitas e apurar o DAS. Avaliar a evolução da empresa, o faturamento e as margens de B2B e B2C.</p>
+      </article>
+    </div>
+    <div class="plan-forecast" aria-label="Referência de recolhimento para 2027">
+      <div><span>Receita mensal de referência</span><strong id="planRevenue">R$ 3.000,00</strong></div>
+      <div><span>Revenda · DAS integral</span><strong id="planRetail">R$ 120,00</strong></div>
+      <div><span>Produção · DAS integral</span><strong id="planProduction">R$ 135,00</strong></div>
+    </div>
+    <p class="plan-note">Valores para a mesma receita em cada atividade, com receita constante. Na operação mista, o DAS soma os valores das receitas segregadas.</p>
+  </section>
+
+  <!-- SLIDE 7: LEGISLAÇÃO -->
+  <section id="legislacao" class="presentation-slide section-block legal-slide" data-slide hidden>
+    <div class="section-heading">
+      <h2>Legislação e Normas</h2>
+      <p>Fontes oficiais · consulta em 12/11/2026 · CBS estimada.</p>
+    </div>
+    <div class="legal-grid">
+      <article>
+        <span class="law-label">Aplicação dos benefícios</span>
+        <h3>Integral e híbrido</h3>
+        <p>Integral segue as regras do Simples. A opção pelo regime regular permite aplicar as reduções de IBS/CBS por fora.</p>
+        <strong>Redução do produto não altera o DAS integral</strong>
+        <a href="https://legis.senado.gov.br/norma/40180341/publicacao/40181429" target="_blank" rel="noopener noreferrer">LC 214/2025 · art. 41, §§ 2º e 3º</a>
+      </article>
+
+      <article>
+        <span class="law-label">Alimentos: Redução de 60%</span>
+        <h3>LC nº 214/2025 · Art. 135 · Anexo VII</h3>
+        <p>Frutas secas elegíveis do item 14, sem adição de açúcar ou outros edulcorantes. Aplicação no regime regular por fora.</p>
+        <strong>CBS: 4,48% · IBS: 0,04%</strong>
+        <a href="https://legis.senado.gov.br/norma/40180341/publicacao/40180967" target="_blank" rel="noopener noreferrer">LC 214/2025 · Anexo VII</a>
+      </article>
+
+      <article>
+        <span class="law-label">Alíquota Zero</span>
+        <h3>LC nº 214/2025 · Art. 148 · Anexo XV</h3>
+        <p>Coco dessecado, NCM 0801.11.00, abrangido pela subposição 0801.1 do item 6. Aplicação por fora; o DAS remanescente permanece.</p>
+        <strong>CBS: 0,00% · IBS: 0,00%</strong>
+        <a href="https://legis.senado.gov.br/norma/40180341/publicacao/40181038" target="_blank" rel="noopener noreferrer">LC 214/2025 · Anexo XV</a>
+      </article>
+
+      <article>
+        <span class="law-label">B2B e B2C</span>
+        <h3>Venda a empresas no Simples integral</h3>
+        <p>Comprador no regime regular: crédito limitado ao IBS/CBS devido pelo fornecedor no Simples. B2C mantém foco no preço final.</p>
+        <strong>O tipo de cliente não muda o Anexo</strong>
+        <a href="https://legis.senado.gov.br/norma/40180341/publicacao/40181429" target="_blank" rel="noopener noreferrer">LC 214/2025 · art. 47, § 9º, II</a>
+      </article>
+    </div>
+
+    <button type="button" id="legalToggle" class="source-button">Ver notas técnicas completas</button>
+  </section>
+</main>
+
+<!-- DIALOGS -->
+<dialog id="legalDialog" class="products-dialog" aria-labelledby="legalTitle">
+  <div class="dialog-heading">
+    <h2 id="legalTitle">Notas Técnicas e Premissas</h2>
+    <button type="button" id="closeLegal">Fechar</button>
+  </div>
+  <div class="detail-content">
+    <p>Simulação elaborada sob a legislação vigente (LC 123/2006 e LC 214/2025) para o ano de 2027.</p>
+    <p><strong>Produção e revenda:</strong> Anexo II e Anexo I, respectivamente. Alíquotas iniciais 4,5% e 4%; a RBT12 total determina a faixa. A simulação mostra toda a receita em uma atividade por vez, sem inventar divisão das vendas.</p>
+    <p><strong>Benefício por produto:</strong> a redução de 60% e a alíquota zero da LC 214 são aplicadas somente aos débitos de IBS/CBS do regime regular por fora. Não reduzem o DAS integral. Fundamento: LC 214, art. 41, §§ 2º e 3º, e <a href="https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp123.htm#art24" target="_blank" rel="noopener noreferrer">LC 123, art. 24, § 1º</a>.</p>
+    <p><strong>Alíquotas estimadas:</strong> referência CBS de 11,3% estimada pelo TCU, com redução transitória de 0,1 ponto: CBS 11,2% + IBS 0,1%. Com redução de 60%: CBS 4,48% e IBS 0,04%. <a href="https://portal.tcu.gov.br/imprensa/noticias/tcu-calcula-aliquota-de-referencia-de-113-para-novo-tributo-sobre-consumo" target="_blank" rel="noopener noreferrer">Estimativa oficial do TCU</a>.</p>
+    <p><strong>Base do comparativo:</strong> receita mensal usada como base ilustrativa dos débitos brutos de IBS/CBS, sem créditos. A apuração real ajusta a base pelos tributos excluídos e documentos da operação.</p>
+    <p><strong>Tabelas 2027–2028:</strong> <a href="https://legis.senado.gov.br/norma/40180341/publicacao/40181079" target="_blank" rel="noopener noreferrer">Anexo I</a> e <a href="https://legis.senado.gov.br/norma/40180341/publicacao/40181111" target="_blank" rel="noopener noreferrer">Anexo II</a>. Em janeiro/2027, a regra proporcional de início de atividade utiliza os meses de maio a novembro/2026; sem histórico real, esta apresentação usa receita constante.</p>
+    <p><strong>Calendário de opção:</strong> de 1º a 31 de março/2027 para o modelo híbrido com efeitos de julho a dezembro/2027, conforme <a href="https://www8.receita.fazenda.gov.br/SIMPLESNACIONAL/noticias/noticiacompleta.aspx?id=E595D010-1E04-4C3B-95D9-185FC58594B5" target="_blank" rel="noopener noreferrer">Receita Federal / CGSN</a>. A apresentação não formaliza opção tributária.</p>
+  </div>
+</dialog>
+
+<dialog id="productsDialog" class="products-dialog" aria-labelledby="productsTitle">
+  <div class="dialog-heading">
+    <div>
+      <h2 id="productsTitle">Catálogo de Produtos e NCMs</h2>
+      <p>Exemplos para a atividade · benefícios somente no modelo por fora. Não alteram o DAS integral.</p>
+    </div>
+    <button type="button" id="closeProducts">Fechar</button>
+  </div>
+  <div id="productCatalog" class="product-catalog">
+    <article>
+      <div>
+        <h3>Maçã Desidratada</h3>
+        <p>NCM 0813.30.00 · Sem adição de açúcar</p>
+      </div>
+      <div>
+        <span>Redução de 60%</span>
+        <strong>CBS 4,48% · IBS 0,04%</strong>
+      </div>
+      <button type="button" data-benefit="reduced" data-product="Maçã seca sem açúcar">Demonstrar</button>
+    </article>
+
+    <article>
+      <div>
+        <h3>Damasco Seco</h3>
+        <p>NCM 0813.10.00 · Sem adição de açúcar</p>
+      </div>
+      <div>
+        <span>Redução de 60%</span>
+        <strong>CBS 4,48% · IBS 0,04%</strong>
+      </div>
+      <button type="button" data-benefit="reduced" data-product="Damasco seco sem açúcar">Demonstrar</button>
+    </article>
+
+    <article>
+      <div>
+        <h3>Ameixa Seca</h3>
+        <p>NCM 0813.20.10 com caroço / 0813.20.20 sem caroço</p>
+      </div>
+      <div>
+        <span>Redução de 60%</span>
+        <strong>CBS 4,48% · IBS 0,04%</strong>
+      </div>
+      <button type="button" data-benefit="reduced" data-product="Ameixa seca sem açúcar">Demonstrar</button>
+    </article>
+
+    <article class="zero-product">
+      <div>
+        <h3>Coco Dessecado</h3>
+        <p>NCM 0801.11.00 · Sem edulcorantes</p>
+      </div>
+      <div>
+        <span>Alíquota Zero Específica</span>
+        <strong>CBS 0,00% · IBS 0,00%</strong>
+      </div>
+      <p class="zero-info">Alíquota zero de IBS e CBS.</p>
+    </article>
+  </div>
+
+  <div class="product-conditions">
+    <h3>Requisitos para a Redução de 60%:</h3>
+    <ul>
+      <li>Sem adição de açúcar ou outros edulcorantes; NCM e composição compatíveis com o item 14 do Anexo VII.</li>
+      <li>Respeitar as exclusões de nozes, castanhas e frutas não regionais; misturas exigem análise de todos os componentes.</li>
+      <li>Benefício na apuração regular de IBS/CBS, após opção pelo modelo por fora. O DAS integral não muda.</li>
+    </ul>
+  </div>
+  <button type="button" id="applyFoodBenefit" class="apply-benefit">Aplicar Redução de 60%</button>
+</dialog>
+
+<div class="mobile-summary" aria-label="Resumo do comparativo">
+  <div>
+    <span>Simples Integral</span>
+    <strong id="mobileFull">R$ 135,00</strong>
+  </div>
+  <div>
+    <span>IBS/CBS por Fora</span>
+    <strong id="mobileHybrid">R$ 251,70</strong>
+  </div>
+</div>
+
+<footer class="slide-controls">
+  <button type="button" id="prevSlide" aria-label="Slide anterior">← Anterior</button>
+  <div class="slide-indicator">
+    <span id="slideCount">1 / 7</span>
+    <strong id="slideTitle">1. Empresa & CNAEs</strong>
+  </div>
+  <button type="button" id="nextSlide" aria-label="Próximo slide">Próximo →</button>
+</footer>
+
+</body>
+</html>
