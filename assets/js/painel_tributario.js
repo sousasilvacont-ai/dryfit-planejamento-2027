@@ -62,13 +62,20 @@
     }
     const monthly = Number(monthlyRevenue);
     const foodReduction = options.foodReduction === undefined ? false : options.foodReduction;
-    const creditShare = options.creditShare === undefined ? 0 : Number(options.creditShare);
+    const hasCreditPercent = options.creditPercent !== undefined;
+    const creditPercent = hasCreditPercent ? Number(options.creditPercent) : undefined;
+    const creditShare = hasCreditPercent
+      ? creditPercent / 100
+      : options.creditShare === undefined ? 0 : Number(options.creditShare);
     const selectedAnnex = options.annex === "I" ? "I" : "II";
 
     if (typeof foodReduction !== "boolean") {
       throw new TypeError("foodReduction deve ser true ou false.");
     }
-    if (!Number.isFinite(creditShare) || creditShare < 0 || creditShare > 1) {
+    if (hasCreditPercent && (!Number.isFinite(creditPercent) || creditPercent < 0 || creditPercent > 100)) {
+      throw new RangeError("creditPercent deve estar entre zero e cem.");
+    }
+    if (!hasCreditPercent && (!Number.isFinite(creditShare) || creditShare < 0 || creditShare > 1)) {
       throw new RangeError("creditShare deve estar entre zero e um.");
     }
 
@@ -76,9 +83,15 @@
     const factor = options.zeroRate ? 0 : (foodReduction ? hybridAssumptions.foodRateFactor : 1);
     const cbsRate = hybridAssumptions.cbsRate * factor;
     const ibsRate = hybridAssumptions.ibsRate * factor;
-    const regularGross = roundMoney(roundMoney(monthly * cbsRate) + roundMoney(monthly * ibsRate));
-    const credits = roundMoney(regularGross * creditShare);
-    const regularNet = roundMoney(Math.max(regularGross - credits, 0));
+    const cbsGross = roundMoney(monthly * cbsRate);
+    const ibsGross = roundMoney(monthly * ibsRate);
+    const regularGross = roundMoney(cbsGross + ibsGross);
+    const cbsCredit = roundMoney(cbsGross * creditShare);
+    const ibsCredit = roundMoney(ibsGross * creditShare);
+    const cbsNet = roundMoney(Math.max(cbsGross - cbsCredit, 0));
+    const ibsNet = roundMoney(Math.max(ibsGross - ibsCredit, 0));
+    const credits = roundMoney(cbsCredit + ibsCredit);
+    const regularNet = roundMoney(cbsNet + ibsNet);
     const residualShare = selectedAnnex === "I" ? hybridAssumptions.annexIResidualShare : hybridAssumptions.annexIIResidualShare;
     const residualDas = roundMoney(fullDas.das * residualShare);
     const hybridWithoutCredits = roundMoney(residualDas + regularGross);
@@ -95,11 +108,18 @@
       effectiveRate: fullDas.effectiveRate,
       foodReduction,
       foodRateFactor: factor,
+      creditPercent: hasCreditPercent ? creditPercent : creditShare * 100,
       creditShare,
       cbsReferenceRate: hybridAssumptions.cbsReferenceRate,
       cbsRate,
+      cbsNetRate: monthly > 0 ? cbsNet / monthly : 0,
       ibsRate,
+      ibsNetRate: monthly > 0 ? ibsNet / monthly : 0,
       modeledRegularRate: cbsRate + ibsRate,
+      cbsGross,
+      ibsGross,
+      cbsNet,
+      ibsNet,
       regularGross,
       credits,
       regularNet,
@@ -123,6 +143,7 @@
     'activityAnnex1','activityAnnex2','annexContext',
     'standardProduct','foodProduct','zeroProduct',
     'monthValue','rbtValue','fullTotal','fullRate','hybridTotal','hybridRate',
+    'productCredit','productCreditValue','productCreditAmount',
     'fullDASshare','hybridBase','hybridRegular',
     'decisionTitle','decisionText','monthlyGap','scenarioLabel',
     'mobileFull','mobileHybrid','comparisonRows','fullBar','hybridBar',
@@ -140,7 +161,7 @@
     annex: currentAnnex,
     foodReduction: benefit === 'reduced',
     zeroRate: benefit === 'zero',
-    creditShare: 0
+    creditPercent: Number(ui.productCredit.value)
   });
 
   const text = (id,value) => { const el=$(id); if(el) el.textContent=value; };
@@ -216,6 +237,8 @@
     }
     $('inputError').hidden = true;
 
+    text('productCreditValue', r.creditPercent + '%');
+    text('productCreditAmount', money.format(r.credits));
     text('monthValue', money.format(month));
     text('rbtValue', money.format(annual));
     text('fullTotal', money.format(r.fullDas));
@@ -224,14 +247,14 @@
     text('hybridRate', percent.format(r.hybrid/month));
     text('fullDASshare', money.format(r.fullDas));
     text('hybridBase', money.format(r.residualDas));
-    text('hybridRegular', money.format(r.regularGross));
+    text('hybridRegular', money.format(r.regularNet));
     text('mobileFull', money.format(r.fullDas));
     text('mobileHybrid', money.format(r.hybrid));
 
-    text('cbsApplied', percent.format(r.cbsRate));
-    text('ibsApplied', percent.format(r.ibsRate));
-    text('cbsAmount', money.format(month * r.cbsRate) + ' / mês');
-    text('ibsAmount', money.format(month * r.ibsRate) + ' / mês');
+    text('cbsApplied', percent.format(r.cbsNetRate));
+    text('ibsApplied', percent.format(r.ibsNetRate));
+    text('cbsAmount', money.format(r.cbsNet) + ' / mês');
+    text('ibsAmount', money.format(r.ibsNet) + ' / mês');
     text('reductionValue', benefit === 'zero' ? 'Alíquota Zero (0%)' : benefit === 'reduced' ? 'Redução de 60%' : 'Regra Geral');
     text('benefitProductHint', selectedProduct);
     text('taxTableMonthRef', money.format(month));
@@ -242,17 +265,17 @@
     text('planProduction', money.format(calculate(month, month * 12, 'II').das));
 
     const gap = r.differenceFromFullDas;
-    text('monthlyGap', 'Diferença: ' + (gap > 0 ? '+' : '') + money.format(gap) + ' / mês');
+    text('monthlyGap', 'Variação do desembolso: ' + (gap > 0 ? '+' : '') + money.format(gap) + ' / mês');
 
     text('decisionTitle', 'Comparativo de Desembolso para a Dryfit');
     text('decisionText',
       currentAnnex === 'I'
-        ? 'Revenda (Anexo I): DAS de ' + money.format(r.fullDas) + ' (' + percent.format(r.effectiveRate) + ') vs. ' + money.format(r.hybrid) + ' por fora.'
-        : 'Produção Própria (Anexo II · CNAE 1031-7/00): DAS de ' + money.format(r.fullDas) + ' (' + percent.format(r.effectiveRate) + ') vs. ' + money.format(r.hybrid) + ' por fora.'
+        ? 'Revenda (Anexo I): DAS de ' + money.format(r.fullDas) + ' (' + percent.format(r.effectiveRate) + ') e IBS/CBS de ' + money.format(r.hybrid) + ' por fora.'
+        : 'Produção Própria (Anexo II · CNAE 1031-7/00): DAS de ' + money.format(r.fullDas) + ' (' + percent.format(r.effectiveRate) + ') e IBS/CBS de ' + money.format(r.hybrid) + ' por fora.'
     );
 
-    text('scenarioLabel', (currentAnnex === 'I' ? 'Revenda · Anexo I' : 'Produção · Anexo II') + ' · Bruto sem créditos · benefício só por fora');
-    text('statusText', 'Simples integral: ' + money.format(r.fullDas) + '. Regime regular: ' + money.format(r.hybrid) + '. ' + selectedProduct + '.');
+    text('scenarioLabel', (currentAnnex === 'I' ? 'Revenda · Anexo I' : 'Produção · Anexo II') + ' · Créditos estimados: ' + r.creditPercent + '% · benefício só por fora');
+    text('statusText', 'Simples tradicional: ' + money.format(r.fullDas) + '. Regime regular após crédito estimado: ' + money.format(r.hybrid) + '. Crédito: ' + money.format(r.credits) + '. ' + selectedProduct + '.');
 
     const max = Math.max(r.fullDas, r.hybrid, 0.01);
     bar(ui.fullBar, r.fullDas, max);
@@ -269,14 +292,17 @@
       annex: currentAnnex,
       residualDas: r.residualDas,
       residualRate: r.residualDas / month,
-      cbsAmount: roundMoney(month * r.cbsRate),
-      cbsRate: r.cbsRate,
-      ibsAmount: roundMoney(month * r.ibsRate),
-      ibsRate: r.ibsRate
+      cbsAmount: r.cbsNet,
+      cbsRate: r.cbsNetRate,
+      ibsAmount: r.ibsNet,
+      ibsRate: r.ibsNetRate,
+      hybridRegular: r.regularNet,
+      credits: r.credits,
+      creditPercent: r.creditPercent
     };
     window.dispatchEvent(new CustomEvent('tax:updated', { detail: globalThis.TaxScenario }));
 
-    for (const input of [ui.monthly, ui.rbt]) {
+    for (const input of [ui.monthly, ui.rbt, ui.productCredit]) {
       const fill = (Number(input.value) - Number(input.min)) / (Number(input.max) - Number(input.min)) * 100;
       input.style.setProperty('--fill', fill + '%');
     }
@@ -284,6 +310,7 @@
 
   ui.monthly.addEventListener('input', update);
   ui.rbt.addEventListener('input', () => { customInitialized = true; update(); });
+  ui.productCredit.addEventListener('input', update);
   ui.stable.addEventListener('click', () => { setBase(false); update(); });
   ui.custom.addEventListener('click', () => {
     if (!customInitialized) {
@@ -304,6 +331,7 @@
   ui.reset.addEventListener('click', () => {
     ui.monthly.value = '3000';
     ui.rbt.value = '36000';
+    ui.productCredit.value = '0';
     customInitialized = false;
     setBase(false);
     setActivity('II');
@@ -332,15 +360,15 @@
     });
   });
 
-  const slideIds = ['empresa','tributacao','tributos','alternativas','oportunidades','atuacao','legislacao'];
+  const slideIds = ['empresa','atuacao','tributacao','alternativas','oportunidades','legislacao','tributos'];
   const slideNames = [
-    '1. Empresa & CNAEs',
-    '2. Comparativo 3D',
-    '3. Composição dos Tributos',
+    '1. Empresa',
+    '2. Planejamento 2027',
+    '3. Comparativo 3D',
     '4. Impacto no Caixa',
-    '5. Produtos e benefícios',
-    '6. Planejamento 2027',
-    '7. Legislação & Normas'
+    '5. Oportunidades da reforma',
+    '6. Fundamentos do planejamento',
+    '7. Composição dos Tributos'
   ];
   let slideIndex = 0;
 
@@ -421,8 +449,8 @@
     const regular = [...values];
     let oi = 0;
     for (let i = 0; i < 7; i++) {
-      if (i === 2) regular[i] = roundMoney(r.monthlyRevenue * r.cbsRate);
-      else if (i === 6) regular[i] = roundMoney(r.monthlyRevenue * r.ibsRate);
+      if (i === 2) regular[i] = r.cbsNet;
+      else if (i === 6) regular[i] = r.ibsNet;
       else regular[i] = others[oi++];
     }
 
@@ -434,7 +462,7 @@
         name,
         rate.format(r.effectiveRate * shares[i]),
         money.format(values[i]),
-        rate.format(isExternalTax ? (i === 2 ? r.cbsRate : r.ibsRate) : r.effectiveRate * shares[i]),
+        rate.format(isExternalTax ? (i === 2 ? r.cbsNetRate : r.ibsNetRate) : r.effectiveRate * shares[i]),
         money.format(regular[i]),
         isExternalTax ? 'Apuração regular fora do DAS' : 'Guia única DAS'
       ].forEach((value, j) => {
