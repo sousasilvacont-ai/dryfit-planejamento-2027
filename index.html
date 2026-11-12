@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="Apresentação interativa de planejamento tributário 2027 da Dryfit." />
+    <meta name="theme-color" content="#081a34" />
+    <title>Dryfit | Planejamento Tributário 2027</title>
+    <style>
+      :root {
+        --bg: #06152b;
+        --panel: #0a1d34;
+        --line: #27415f;
+        --text: #edf4ff;
+        --muted: #bfd0e5;
+        --gold: #d6af64;
+      }
+      * { box-sizing: border-box; }
+      html, body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Segoe UI", Arial, sans-serif;
+      }
+      body {
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+      }
+      .shell {
+        width: min(1200px, calc(100vw - 32px));
+        min-height: min(760px, 86vh);
+        background: linear-gradient(180deg, #0a1d34 0%, #09192b 100%);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25);
+        overflow: hidden;
+      }
+      iframe {
+        display: block;
+        width: 100%;
+        height: 100%;
+        min-height: min(760px, 86vh);
+        border: 0;
+        background: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <iframe
+        src="./PAINEL_TRIBUTARIO_CNPJ_67073133000169.html"
+        title="Apresentação interativa de planejamento tributário da Dryfit"
+        loading="eager"
+      ></iframe>
+    </div>
+  </body>
+</html>
