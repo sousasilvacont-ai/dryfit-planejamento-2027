@@ -4,11 +4,29 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Apresentação interativa de planejamento tributário 2027 da Dryfit.">
-  <meta http-equiv="refresh" content="0; url=./PAINEL_TRIBUTARIO_CNPJ_67073133000169.html">
   <title>Planejamento Dryfit · Tributário 2027</title>
 </head>
 <body>
-  <p>Abrindo a apresentação <a href="./PAINEL_TRIBUTARIO_CNPJ_67073133000169.html">Planejamento Dryfit</a>…</p>
-  <script>window.location.replace('./PAINEL_TRIBUTARIO_CNPJ_67073133000169.html');</script>
+  <p>Carregando a apresentação Dryfit…</p>
+  <script>
+    (async () => {
+      const presentation = './PAINEL_TRIBUTARIO_CNPJ_67073133000169.html';
+      try {
+        const response = await fetch(presentation);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        let html = await response.text();
+        // Os arquivos de dependência estão na raiz do repositório, não em vendor/.
+        html = html.replaceAll('vendor/three.global.js', 'three.global.js');
+        // A fonte também está na raiz; sobrescreve a referência inexistente no CSS.
+        html = html.replace('</head>', '<style>@font-face{font-family:Manrope;src:url("./Manrope-Variable.ttf") format("truetype");font-weight:200 800;font-display:swap}</style></head>');
+        document.open();
+        document.write(html);
+        document.close();
+      } catch (error) {
+        document.body.innerHTML = '<p>Não foi possível carregar a apresentação. Verifique a publicação do GitHub Pages e tente novamente.</p>';
+        console.error('Falha ao carregar a apresentação Dryfit:', error);
+      }
+    })();
+  </script>
 </body>
 </html>
